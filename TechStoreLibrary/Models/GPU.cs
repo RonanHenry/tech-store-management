@@ -92,16 +92,16 @@ namespace TechStoreLibrary.Models
         {
             CommonData commonData = new CommonData();
             GPUData gpuData = new GPUData();
-            int chipsetMakerIndex = Faker.Number.RandomNumber(0, gpuData.ChipsetMakers.Count - 1);
+            int chipsetMakerIndex = Faker.Number.RandomNumber(0, gpuData.ChipsetMakers.Count);
 
             GPU gpu = new GPU();
-            gpu.Brand = gpuData.Brands[Faker.Number.RandomNumber(0, gpuData.Brands.Count - 1)];
+            gpu.Brand = gpuData.Brands[Faker.Number.RandomNumber(0, gpuData.Brands.Count)];
             gpu.ChipsetMaker = gpuData.ChipsetMakers[chipsetMakerIndex];
-            gpu.Name = gpuData.Names[chipsetMakerIndex][Faker.Number.RandomNumber(0, gpuData.Names[chipsetMakerIndex].Count - 1)];
+            gpu.Name = gpuData.Names[chipsetMakerIndex][Faker.Number.RandomNumber(0, gpuData.Names[chipsetMakerIndex].Count)];
             gpu.Description = "Some GPU description";
-            gpu.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length - 1)];
+            gpu.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length)];
             gpu.Price = Faker.Number.RandomNumber(60, 1020);
-            gpu.MemoryAmount = gpuData.MemoryAmount[Faker.Number.RandomNumber(0, gpuData.MemoryAmount.Length - 1)];
+            gpu.MemoryAmount = gpuData.MemoryAmount[Faker.Number.RandomNumber(0, gpuData.MemoryAmount.Length)];
             gpu.VrReady = Faker.Number.Bool();
 
             return gpu;

@@ -92,17 +92,17 @@ namespace TechStoreLibrary.Models
         {
             CommonData commonData = new CommonData();
             CPUData cpuData = new CPUData();
-            int brandIndex = Faker.Number.RandomNumber(0, cpuData.Brands.Count - 1);
+            int brandIndex = Faker.Number.RandomNumber(0, cpuData.Brands.Count);
 
             CPU cpu = new CPU();
             cpu.Brand = cpuData.Brands[brandIndex];
-            cpu.Name = cpuData.Names[brandIndex][Faker.Number.RandomNumber(0, cpuData.Names[brandIndex].Count - 1)];
+            cpu.Name = cpuData.Names[brandIndex][Faker.Number.RandomNumber(0, cpuData.Names[brandIndex].Count)];
             cpu.Description = "Some CPU description";
-            cpu.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length - 1)];
+            cpu.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length)];
             cpu.Price = Faker.Number.RandomNumber(30, 450);
-            cpu.SocketType = cpuData.Sockets[brandIndex][Faker.Number.RandomNumber(0, cpuData.Sockets[brandIndex].Count - 1)];
-            cpu.CoresAmount = cpuData.CoresAmount[Faker.Number.RandomNumber(0, cpuData.CoresAmount.Length - 1)];
-            cpu.Frequency = Faker.Number.RandomNumber(1, 4);
+            cpu.SocketType = cpuData.Sockets[brandIndex][Faker.Number.RandomNumber(0, cpuData.Sockets[brandIndex].Count)];
+            cpu.CoresAmount = cpuData.CoresAmount[Faker.Number.RandomNumber(0, cpuData.CoresAmount.Length)];
+            cpu.Frequency = Faker.Number.RandomNumber(1, 5);
 
             return cpu;
         }

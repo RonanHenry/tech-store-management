@@ -92,16 +92,16 @@ namespace TechStoreLibrary.Models
         {
             CommonData commonData = new CommonData();
             CaseData caseData = new CaseData();
-            int brandIndex = Faker.Number.RandomNumber(0, caseData.Brands.Count - 1);
+            int brandIndex = Faker.Number.RandomNumber(0, caseData.Brands.Count);
 
             Case pcCase = new Case();
             pcCase.Brand = caseData.Brands[brandIndex];
-            pcCase.Name = caseData.Names[brandIndex][Faker.Number.RandomNumber(0, caseData.Names[brandIndex].Count - 1)];
+            pcCase.Name = caseData.Names[brandIndex][Faker.Number.RandomNumber(0, caseData.Names[brandIndex].Count)];
             pcCase.Description = "Some case description";
-            pcCase.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length - 1)];
+            pcCase.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length)];
             pcCase.Price = Faker.Number.RandomNumber(40, 350);
-            pcCase.Type = caseData.Types[Faker.Number.RandomNumber(0, caseData.Types.Length - 1)];
-            pcCase.FrontIO = caseData.FrontIOs[Faker.Number.RandomNumber(0, caseData.FrontIOs.Length - 1)];
+            pcCase.Type = caseData.Types[Faker.Number.RandomNumber(0, caseData.Types.Length)];
+            pcCase.FrontIO = caseData.FrontIOs[Faker.Number.RandomNumber(0, caseData.FrontIOs.Length)];
             pcCase.HasWindow = Faker.Number.Bool();
 
             return pcCase;
