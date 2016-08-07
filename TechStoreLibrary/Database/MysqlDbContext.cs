@@ -24,6 +24,7 @@ namespace TechStoreLibrary.Database
         public DbSet<Case> DbSetCases { get; set; }
         public DbSet<CPU> DbSetCPUs { get; set; }
         public DbSet<GPU> DbSetGPUs { get; set; }
+        public DbSet<Memory> DbSetMemories { get; set; }
         #endregion
 
         #region Constructors
@@ -53,6 +54,7 @@ namespace TechStoreLibrary.Database
                 DbSetCases.AddRange(new Case().LoadMultipleItems());
                 DbSetCPUs.AddRange(new CPU().LoadMultipleItems());
                 DbSetGPUs.AddRange(new GPU().LoadMultipleItems());
+                DbSetMemories.AddRange(new Memory().LoadMultipleItems());
                 SaveChanges();
             }
         }

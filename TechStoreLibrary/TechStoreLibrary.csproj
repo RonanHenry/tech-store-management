@@ -65,8 +65,10 @@
     <Compile Include="DataDefinitions\CommonData.cs" />
     <Compile Include="DataDefinitions\CPUData.cs" />
     <Compile Include="DataDefinitions\GPUData.cs" />
+    <Compile Include="DataDefinitions\MemoryData.cs" />
     <Compile Include="Models\CPU.cs" />
     <Compile Include="Models\GPU.cs" />
+    <Compile Include="Models\Memory.cs" />
     <Compile Include="Utilities\StringValueAttribute.cs" />
     <Compile Include="DataDefinitions\CaseData.cs" />
     <Compile Include="Enums\ConnectionResource.cs" />
