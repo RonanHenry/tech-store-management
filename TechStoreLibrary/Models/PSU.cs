@@ -115,7 +115,7 @@ namespace TechStoreLibrary.Models
         {
             List<PSU> psus = new List<PSU>();
 
-            for (int i = 0; i < Faker.Number.RandomNumber(0, 11); i++)
+            for (int i = 0; i < Faker.Number.RandomNumber(10, 51); i++)
             {
                 psus.Add(LoadSingleItem());
             }

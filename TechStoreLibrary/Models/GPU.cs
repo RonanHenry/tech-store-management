@@ -115,7 +115,7 @@ namespace TechStoreLibrary.Models
         {
             List<GPU> gpus = new List<GPU>();
 
-            for (int i = 0; i < Faker.Number.RandomNumber(2, 11); i++)
+            for (int i = 0; i < Faker.Number.RandomNumber(10, 51); i++)
             {
                 gpus.Add(LoadSingleItem());
             }

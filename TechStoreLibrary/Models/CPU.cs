@@ -115,7 +115,7 @@ namespace TechStoreLibrary.Models
         {
             List<CPU> cpus = new List<CPU>();
 
-            for (int i = 0; i < Faker.Number.RandomNumber(2, 11); i++)
+            for (int i = 0; i < Faker.Number.RandomNumber(10, 51); i++)
             {
                 cpus.Add(LoadSingleItem());
             }

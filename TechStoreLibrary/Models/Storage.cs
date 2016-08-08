@@ -116,7 +116,7 @@ namespace TechStoreLibrary.Models
         {
             List<Storage> storageComponents = new List<Storage>();
 
-            for (int i = 0; i < Faker.Number.RandomNumber(2, 11); i++)
+            for (int i = 0; i < Faker.Number.RandomNumber(10, 51); i++)
             {
                 storageComponents.Add(LoadSingleItem());
             }

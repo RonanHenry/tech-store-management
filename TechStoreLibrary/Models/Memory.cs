@@ -136,7 +136,7 @@ namespace TechStoreLibrary.Models
         {
             List<Memory> memories = new List<Memory>();
 
-            for (int i = 0; i < Faker.Number.RandomNumber(2, 11); i++)
+            for (int i = 0; i < Faker.Number.RandomNumber(10, 51); i++)
             {
                 memories.Add(LoadSingleItem());
             }

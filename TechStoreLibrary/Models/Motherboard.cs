@@ -135,7 +135,7 @@ namespace TechStoreLibrary.Models
         {
             List<Motherboard> motherboards = new List<Motherboard>();
 
-            for (int i = 0; i < Faker.Number.RandomNumber(0, 11); i++)
+            for (int i = 0; i < Faker.Number.RandomNumber(10, 51); i++)
             {
                 motherboards.Add(LoadSingleItem());
             }
