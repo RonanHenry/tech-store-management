@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TechStoreLibrary.Models.Address">
+    <Position X="4.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKAQAAAAAAAAAIAAAACAAAAAIAAgALAAIAAAAAAgA=</HashCode>
+      <FileName>Models\Address.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TechStoreLibrary.Models.Case">
+    <Position X="8.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAACAAAAAgEBAAAIAQAAAAAAAAE=</HashCode>
+      <FileName>Models\Case.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TechStoreLibrary.Models.CPU">
+    <Position X="15.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABIAAAAAAAAAAAAAAAABAAAAIAAAACIAAAABAAAQAA=</HashCode>
+      <FileName>Models\CPU.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TechStoreLibrary.Models.Customer">
+    <Position X="22.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAEAA=</HashCode>
+      <FileName>Models\Customer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TechStoreLibrary.Models.GPU">
+    <Position X="6.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAQAAAACAAAAAgAAAAQAIAAAAIAAAACA=</HashCode>
+      <FileName>Models\GPU.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TechStoreLibrary.Models.Memory">
+    <Position X="11" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAIAAAADAAABAQAIAQAAAgAAAAI=</HashCode>
+      <FileName>Models\Memory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TechStoreLibrary.Models.Motherboard">
+    <Position X="17.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAIAAAAAAAAAQAAAAUAAIAEAAAAAAAICAAAAAgAAAA=</HashCode>
+      <FileName>Models\Motherboard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TechStoreLibrary.Models.Person">
+    <Position X="23.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAACAEAAAABAAAAAAAAAAAAAAAIAAAACAAAACAAAAgg=</HashCode>
+      <FileName>Models\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TechStoreLibrary.Models.Product">
+    <Position X="13.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEDAIAAAQCgAAAAIAAAAAQAAAAEAAAAAAAAAAABAgA=</HashCode>
+      <FileName>Models\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TechStoreLibrary.Models.PSU">
+    <Position X="13.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAABAAAAAQAAAAAAAAAAQEAAAEJAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PSU.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TechStoreLibrary.Models.Storage">
+    <Position X="20" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAIAAAADAAABAQAIAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Storage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TechStoreLibrary.Models.Worker">
+    <Position X="24.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAACAAAAAgAAAAAAIAAAACAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Worker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TechStoreLibrary.Models.Base.BaseModel">
+    <Position X="14.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Base\BaseModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
