@@ -1,0 +1,34 @@
+﻿<Page x:Class="TechStoreWpf.Views.WorkerView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TechStoreWpf.Views"
+      xmlns:vm="clr-namespace:TechStoreWpf.ViewModels"
+      xmlns:uc="clr-namespace:TechStoreWpf.UserControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="WorkerView">
+
+    <Page.DataContext>
+        <vm:WorkerViewModel />
+    </Page.DataContext>
+
+    <ScrollViewer>
+        
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Staff member" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="0,20,0,0" />
+
+            <!-- Worker UserControl -->
+            <uc:WorkerUserControl Grid.Row="1" />
+
+        </Grid>
+        
+    </ScrollViewer>
+</Page>

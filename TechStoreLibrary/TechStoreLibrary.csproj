@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\MysqlDbContext.cs" />
+    <Compile Include="Database\MysqlManager.cs" />
     <Compile Include="DataDefinitions\CommonData.cs" />
     <Compile Include="DataDefinitions\CPUData.cs" />
     <Compile Include="DataDefinitions\GPUData.cs" />
@@ -88,11 +89,10 @@
     <Compile Include="Models\Worker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Diagram\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Models\Diagram\Models.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

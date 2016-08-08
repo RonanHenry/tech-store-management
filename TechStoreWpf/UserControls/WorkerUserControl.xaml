@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="TechStoreWpf.UserControls.WorkerUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TechStoreWpf.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <Grid x:Name="WorkerGrid" Margin="10" DataContext="{Binding Worker}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <!-- Worker's first name -->
+        <Label x:Name="WorkerFirstNameLbl" Content="First name" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox x:Name="WorkerFirstNameTxt" Text="{Binding FirstName}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="3" Margin="0, 10" />
+
+        <!-- Worker's last name -->
+        <Label x:Name="WorkerLastNameLbl" Content="Last name" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox x:Name="WorkerLastNameTxt" Text="{Binding LastName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="3" Margin="0, 10" />
+        
+        <!-- Worker's job -->
+        <Label x:Name="WorkerJobLbl" Content="Job" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox x:Name="WorkerJobTxt" Text="{Binding Job}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="3" Margin="0, 10" />
+        
+        <!-- Worker's email-->
+        <Label x:Name="WorkerEmailLbl" Content="Email" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox x:Name="WorkerEmailTxt" Text="{Binding Email}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="3" Margin="0, 10" />
+
+        <!-- Worker's address -->
+        <GroupBox Header="Address" Grid.Row="4" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Padding="10">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <!-- Street -->
+                <Label x:Name="WorkerAddressStreetLbl" Content="Street" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <TextBox x:Name="WorkerAddressStreetTxt" Text="{Binding Address.Street}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="3" Margin="0, 10" />
+
+                <!-- ZIP code -->
+                <Label x:Name="WorkerAddressZipCodeLbl" Content="ZIP code" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <TextBox x:Name="WorkerAddressZipCodeTxt" Text="{Binding Address.ZipCode}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="3" Margin="0, 10" />
+
+                <!-- City -->
+                <Label x:Name="WorkerAddressCityLbl" Content="City" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <TextBox x:Name="WorkerAddressCityTxt" Text="{Binding Address.City}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="3" Margin="0, 10" />
+
+                <!-- Country -->
+                <Label x:Name="WorkerAddressCountryLbl" Content="Country" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <TextBox x:Name="WorkerAddressCountryTxt" Text="{Binding Address.Country}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="3" Margin="0, 10" />
+
+            </Grid>
+            
+        </GroupBox>
+        
+        <!-- To remove -->
+        <Button x:Name="ChangeWorkerBtn" Content="Change" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="50, 3" Margin="0, 10, 0, 0" Click="ChangeWorkerBtn_Click" />
+        
+        <!-- Submit button -->
+        <!--<Button x:Name="SaveWorkerBtn" Content="Save" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="50, 3" Margin="0, 10, 0, 0" />-->
+
+    </Grid>
+    
+</UserControl>
