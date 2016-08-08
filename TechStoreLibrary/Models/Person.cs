@@ -77,7 +77,7 @@ namespace TechStoreLibrary.Models
         /// Person's address.
         /// </summary>
         [ForeignKey("AddressId")]
-        public Address Address
+        public virtual Address Address
         {
             get
             {
