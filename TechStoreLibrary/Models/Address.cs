@@ -143,7 +143,7 @@ namespace TechStoreLibrary.Models
         {
             List<Address> addresses = new List<Address>();
 
-            for (int i = 0; i < Faker.Number.RandomNumber(2, 10); i++)
+            for (int i = 0; i < Faker.Number.RandomNumber(2, 11); i++)
             {
                 addresses.Add(LoadSingleItem());
             }

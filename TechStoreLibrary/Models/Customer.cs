@@ -70,7 +70,7 @@ namespace TechStoreLibrary.Models
         {
             List<Customer> customers = new List<Customer>();
 
-            for (int i = 0; i < Faker.Number.RandomNumber(2, 10); i++)
+            for (int i = 0; i < Faker.Number.RandomNumber(2, 11); i++)
             {
                 customers.Add(LoadSingleItem());
             }
