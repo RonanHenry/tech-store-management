@@ -13,19 +13,30 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TechStoreLibrary.Database;
+using TechStoreLibrary.Models;
 
 namespace TechStoreWpf
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : NavigationWindow
     {
         public MainWindow()
         {
-            MysqlDbContext context = new MysqlDbContext(TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL);
+            MysqlManager<Worker> context = new MysqlManager<Worker>(TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL);
 
             InitializeComponent();
+
+            const int initialWidth = 1100;
+            const int initialHeight = 650;
+
+            var verticalBorderWidth = SystemParameters.ResizeFrameVerticalBorderWidth;
+            var horizontalBorderHeight = SystemParameters.ResizeFrameHorizontalBorderHeight;
+            var captionHeight = SystemParameters.CaptionHeight;
+
+            Width = initialWidth + 2 * verticalBorderWidth;
+            Height = initialHeight + captionHeight + 2 * horizontalBorderHeight;
         }
     }
 }

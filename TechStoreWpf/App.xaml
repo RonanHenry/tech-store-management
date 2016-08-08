@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:TechStoreWpf"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="DatagridColumnElementStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="5" />
+        </Style>
     </Application.Resources>
 </Application>
