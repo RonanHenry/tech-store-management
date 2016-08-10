@@ -30,7 +30,7 @@ namespace TechStoreWpf.ViewModels.Base
         /// We retrieve the property name that triggered the event using CallerMemberName.
         /// </summary>
         /// <param name="propertyName"></param>
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
