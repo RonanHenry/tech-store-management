@@ -12,8 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TechStoreLibrary.Database;
-using TechStoreLibrary.Models;
 
 namespace TechStoreWpf
 {
@@ -24,8 +22,6 @@ namespace TechStoreWpf
     {
         public MainWindow()
         {
-            MysqlManager<Worker> context = new MysqlManager<Worker>(TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL);
-
             InitializeComponent();
 
             const int initialWidth = 1100;
