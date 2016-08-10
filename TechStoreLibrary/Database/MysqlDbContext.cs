@@ -48,7 +48,7 @@ namespace TechStoreLibrary.Database
         #endregion
 
         #region Methods
-        public void InitLocalDatabase()
+        public async void InitLocalDatabase()
         {
             if (Database.CreateIfNotExists())
             {
@@ -61,7 +61,7 @@ namespace TechStoreLibrary.Database
                 DbSetMotherboards.AddRange(new Motherboard().LoadMultipleItems());
                 DbSetPSUs.AddRange(new PSU().LoadMultipleItems());
                 DbSetStorages.AddRange(new Storage().LoadMultipleItems());
-                SaveChanges();
+                await SaveChangesAsync();
             }
         }
         #endregion
