@@ -19,11 +19,42 @@ namespace TechStoreWpf.Views
     /// <summary>
     /// Interaction logic for WorkerListView.xaml
     /// </summary>
-    public partial class WorkerListView : Page
+    public sealed partial class WorkerListView : Page
     {
+        #region Attributes
+        private WorkerListViewModel workerListViewModel;
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// ViewModel of the view.
+        /// </summary>
+        public WorkerListViewModel WorkerListViewModel
+        {
+            get
+            {
+                return workerListViewModel;
+            }
+            set
+            {
+                workerListViewModel = value;
+            }
+        }
+        #endregion
+
+        #region Constructors
         public WorkerListView()
         {
             InitializeComponent();
+
+            WorkerListViewModel = new WorkerListViewModel(this);
+            DataContext = WorkerListViewModel;
         }
+        #endregion
+
+        #region Methods
+
+        #endregion
+
     }
 }

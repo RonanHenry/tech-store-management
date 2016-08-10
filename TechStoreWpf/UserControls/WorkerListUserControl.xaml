@@ -8,9 +8,14 @@
              d:DesignHeight="300" d:DesignWidth="300">
     
     <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
             
         <!-- Worker list -->
-        <DataGrid x:Name="WorkerList" ItemsSource="{Binding Workers}" HorizontalAlignment="Center" VerticalAlignment="Top" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" CanUserAddRows="False" IsReadOnly="True" AlternatingRowBackground="AliceBlue" FontSize="16">
+        <DataGrid x:Name="WorkerList" ItemsSource="{Binding Workers}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" AlternatingRowBackground="AliceBlue" FontSize="16">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                 <DataGridTextColumn Header="First name" Binding="{Binding FirstName}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
@@ -23,7 +28,15 @@
                 <DataGridTextColumn Header="Country" Binding="{Binding Address.Country}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
             </DataGrid.Columns>
         </DataGrid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+            <Button x:Name="AddWorker" Content="Add" Command="{Binding AddWorkerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="5, 0, 0, 0" />
+            <Button x:Name="EditWorker" Content="Edit" Command="{Binding EditWorkerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="5, 0, 0, 0" />
+            <Button x:Name="DeleteWorker" Content="Delete" Command="{Binding DeleteWorkerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="5, 0, 0, 0" />
+        </StackPanel>
+
         
+
     </Grid>
     
 </UserControl>

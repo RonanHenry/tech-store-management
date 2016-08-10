@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TechStoreLibrary.Models;
+using TechStoreWpf.ViewModels;
 
 namespace TechStoreWpf.Views
 {
@@ -20,9 +22,45 @@ namespace TechStoreWpf.Views
     /// </summary>
     public partial class WorkerView : Page
     {
+        #region Attributes
+        private WorkerViewModel workerViewModel;
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// ViewModel of the view.
+        /// </summary>
+        public WorkerViewModel WorkerViewModel
+        {
+            get
+            {
+                return workerViewModel;
+            }
+            set
+            {
+                workerViewModel = value;
+            }
+        }
+        #endregion
+
+        #region Constructors
         public WorkerView()
         {
             InitializeComponent();
+
+            WorkerViewModel = new WorkerViewModel(this);
+            DataContext = WorkerViewModel;
         }
+
+        public WorkerView(Worker worker)
+            : this()
+        {
+            WorkerViewModel.Worker = worker;
+        }
+        #endregion
+
+        #region Methods
+
+        #endregion
     }
 }

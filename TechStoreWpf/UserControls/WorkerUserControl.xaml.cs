@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TechStoreLibrary.Models;
+using TechStoreWpf.Views;
 
 namespace TechStoreWpf.UserControls
 {
@@ -26,10 +27,14 @@ namespace TechStoreWpf.UserControls
             InitializeComponent();
         }
 
-        private void ChangeWorkerBtn_Click(object sender, RoutedEventArgs e)
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            Worker worker = (Worker)WorkerGrid.DataContext;
-            worker.FirstName = "Martine";
+            var parent = VisualTreeHelper.GetParent(this);
+            while (!(parent is Page))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+            (parent as Page).NavigationService.Navigate(new WorkerListView());
         }
     }
 }

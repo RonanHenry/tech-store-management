@@ -4,17 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TechStoreWpf.Views"
-      xmlns:vm="clr-namespace:TechStoreWpf.ViewModels"
       xmlns:uc="clr-namespace:TechStoreWpf.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="WorkerView">
 
-    <Page.DataContext>
-        <vm:WorkerViewModel />
-    </Page.DataContext>
-
-    <ScrollViewer>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
         
         <Grid>
 
