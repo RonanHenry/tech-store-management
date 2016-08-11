@@ -91,6 +91,21 @@ namespace TechStoreWpf.UserControls
         {
             StatusBar.Text = "Delete selected graphics card";
         }
+
+        private void AddMotherboard_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Add a motherboard";
+        }
+
+        private void EditMotherboard_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Edit selected motherboard";
+        }
+
+        private void DeleteMotherboard_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Delete selected motherboard";
+        }
         #endregion
     }
 }

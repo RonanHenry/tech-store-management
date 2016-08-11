@@ -20,6 +20,7 @@ namespace TechStoreWpf.ViewModels
         private ProductListView productListView;
         private ObservableCollection<CPU> cpus;
         private ObservableCollection<GPU> gpus;
+        private ObservableCollection<Motherboard> motherboards;
         #endregion
 
         #region Properties
@@ -70,12 +71,33 @@ namespace TechStoreWpf.ViewModels
             }
         }
 
+        /// <summary>
+        /// Motherboard products list.
+        /// </summary>
+        public ObservableCollection<Motherboard> Motherboards
+        {
+            get
+            {
+                return motherboards;
+            }
+            set
+            {
+                motherboards = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand AddCPUCommand { get; private set; }
         public ICommand EditCPUCommand { get; private set; }
         public ICommand DeleteCPUCommand { get; private set; }
+
         public ICommand AddGPUCommand { get; private set; }
         public ICommand EditGPUCommand { get; private set; }
         public ICommand DeleteGPUCommand { get; private set; }
+
+        public ICommand AddMotherboardCommand { get; private set; }
+        public ICommand EditMotherboardCommand { get; private set; }
+        public ICommand DeleteMotherboardCommand { get; private set; }
         #endregion
 
         #region Constructors
@@ -88,9 +110,14 @@ namespace TechStoreWpf.ViewModels
             AddCPUCommand = new RelayCommand(ExecAddCPU, CanAddProduct);
             EditCPUCommand = new RelayCommand(ExecEditCPU, CanEditCPU);
             DeleteCPUCommand = new RelayCommand(ExecDeleteCPU, CanDeleteCPU);
+
             AddGPUCommand = new RelayCommand(ExecAddGPU, CanAddProduct);
             EditGPUCommand = new RelayCommand(ExecEditGPU, CanEditGPU);
             DeleteGPUCommand = new RelayCommand(ExecDeleteGPU, CanDeleteGPU);
+
+            AddMotherboardCommand = new RelayCommand(ExecAddMotherboard, CanAddProduct);
+            EditMotherboardCommand = new RelayCommand(ExecEditMotherboard, CanEditMotherboard);
+            DeleteMotherboardCommand = new RelayCommand(ExecDeleteMotherboard, CanDeleteMotherboard);
         }
         #endregion
 
@@ -110,6 +137,7 @@ namespace TechStoreWpf.ViewModels
                     case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
                         CPUs = new ObservableCollection<CPU>(await ctx.DbSetCPUs.ToListAsync());
                         GPUs = new ObservableCollection<GPU>(await ctx.DbSetGPUs.ToListAsync());
+                        Motherboards = new ObservableCollection<Motherboard>(await ctx.DbSetMotherboards.ToListAsync());
                         break;
                     default:
                         break;
@@ -216,6 +244,55 @@ namespace TechStoreWpf.ViewModels
         }
 
         private void ExecDeleteGPU(object obj)
+        {
+
+        }
+
+        private void ExecAddMotherboard(object obj)
+        {
+
+        }
+
+        /// <summary>
+        /// Edition is active only when a Motherboard is selected.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private bool CanEditMotherboard(object obj)
+        {
+            if (ProductListView.ProductListUserControl.MotherboardList.SelectedIndex > -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void ExecEditMotherboard(object obj)
+        {
+
+        }
+
+        /// <summary>
+        /// Deletion is active only when a Motherboard is selected.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private bool CanDeleteMotherboard(object obj)
+        {
+            if (ProductListView.ProductListUserControl.MotherboardList.SelectedIndex > -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void ExecDeleteMotherboard(object obj)
         {
 
         }
