@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechStoreLibrary.DataDefinitions;
 using TechStoreLibrary.FakerLoader;
 
 namespace TechStoreLibrary.Models
@@ -71,11 +72,13 @@ namespace TechStoreLibrary.Models
         /// <returns></returns>
         public Worker LoadSingleItem()
         {
+            WorkerData workerData = new WorkerData();
+
             Worker worker = new Worker();
             worker.FirstName = Faker.Name.FirstName();
             worker.LastName = Faker.Name.LastName();
             worker.Address = new Address().LoadSingleItem();
-            worker.Job = Faker.Name.FullName();
+            worker.Job = workerData.Jobs[Faker.Number.RandomNumber(0, workerData.Jobs.Length)];
             worker.Email = string.Format("{0}.{1}@tech-store.com", worker.FirstName, worker.LastName);
 
             return worker;

@@ -70,6 +70,7 @@
     <Compile Include="DataDefinitions\MotherboardData.cs" />
     <Compile Include="DataDefinitions\PSUData.cs" />
     <Compile Include="DataDefinitions\StorageData.cs" />
+    <Compile Include="DataDefinitions\WorkerData.cs" />
     <Compile Include="Models\CPU.cs" />
     <Compile Include="Models\GPU.cs" />
     <Compile Include="Models\Memory.cs" />
