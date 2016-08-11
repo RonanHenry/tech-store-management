@@ -1,4 +1,5 @@
-﻿<Page x:Class="TechStoreWpf.Views.Layout"
+﻿<Page x:Class="TechStoreWpf.Views.LayoutView"
+      x:Name="LayoutPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,14 +15,9 @@
         <!-- Main menu bar at the top -->
         <Menu DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="3, 5" FontSize="16" Background="#FF333333" Foreground="White" BorderThickness="0">
             <MenuItem Header="_File" Foreground="White">
-                <MenuItem Header="Exit" Foreground="#FF333333"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="_Manage" Foreground="White">
-                <MenuItem Header="Add" Foreground="#FF333333">
-                    <MenuItem Header="Person" Foreground="#FF333333">
-                        <MenuItem Header="Worker" Foreground="#FF333333" />
-                        <MenuItem Header="Customer" Foreground="#FF333333" />
-                    </MenuItem>
+                <MenuItem Header="New" Foreground="#FF333333">
+                    <MenuItem Name="AddWorker" Header="Employee" Foreground="#FF333333" Command="{Binding AddWorkerCommand}" MouseEnter="AddWorker_MouseEnter" MouseLeave="Control_MouseLeave" />
+                    <MenuItem Name="AddCustomer" Header="Customer" Foreground="#FF333333" Command="{Binding AddCustomerCommand}" MouseEnter="AddCustomer_MouseEnter" MouseLeave="Control_MouseLeave" />
                     <MenuItem Header="Product" Foreground="#FF333333">
                         <MenuItem Header="CPU" Foreground="#FF333333" />
                         <MenuItem Header="GPU" Foreground="#FF333333" />
@@ -32,26 +28,25 @@
                         <MenuItem Header="Case" Foreground="#FF333333" />
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Edit" Foreground="#FF333333" IsEnabled="False" />
-                <MenuItem Header="Delete" Foreground="#FF333333" IsEnabled="False" />
+                <MenuItem Name="AppExit" Header="Exit" Foreground="#FF333333" Click="AppExit_Click" MouseEnter="AppExit_MouseEnter" MouseLeave="Control_MouseLeave" />
             </MenuItem>
-            <MenuItem Header="_Help" Foreground="White">
-                <MenuItem Header="About" Foreground="#FF333333" />
+            <MenuItem Header="_About" Foreground="White">
+                <MenuItem Name="AppAbout" Header="About" Foreground="#FF333333" Click="AppAbout_Click" MouseEnter="AppAbout_MouseEnter" MouseLeave="Control_MouseLeave" />
             </MenuItem>
         </Menu>
         
         <!-- Status bar at the bottom -->
         <StatusBar DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Padding="3" Background="#FF333333">
-            <TextBlock Name="statusBarTxt" Text="Ready" Foreground="White" FontSize="14" />
+            <TextBlock Name="StatusBarTxt" Text="Ready" Foreground="White" FontSize="14" />
         </StatusBar>
         
         <!-- Main grid -->
         <Grid DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MinWidth="200" />
+                <ColumnDefinition Width="*" MinWidth="120" MaxWidth="200" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="5*" MinWidth="400" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             
             <!-- Left panel -->
@@ -61,7 +56,7 @@
                         <VirtualizingStackPanel Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
-                <MenuItem x:Name="StaffMenu" Header="Staff members" Foreground="White" Padding="15, 10" Cursor="Hand" BorderThickness="0" Click="StaffMenu_Click" Background="#FF565656" />
+                <MenuItem x:Name="StaffMenu" Header="Employees" Foreground="White" Padding="15, 10" Cursor="Hand" BorderThickness="0" Click="StaffMenu_Click" Background="#FF565656" />
                 <MenuItem x:Name="CustomerMenu" Header="Customers" Foreground="White" Padding="15, 10" Cursor="Hand" BorderThickness="0" Click="CustomerMenu_Click" />
                 <MenuItem Header="Products" Foreground="White" Padding="15, 10" Cursor="Hand" BorderThickness="0" />
             </Menu>
