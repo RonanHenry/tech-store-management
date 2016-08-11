@@ -65,6 +65,7 @@ namespace TechStoreWpf.Views
         {
             LayoutView layoutView = (LayoutView)Utility.FindParent<Page>(this, "LayoutPage");
             layoutView.StaffMenu.Background = (Brush)layoutView.BrushConverter.ConvertFrom("#FF333333");
+            layoutView.ProductMenu.Background = (Brush)layoutView.BrushConverter.ConvertFrom("#FF333333");
             layoutView.CustomerMenu.Background = (Brush)layoutView.BrushConverter.ConvertFrom("#FF565656");
         }
         #endregion

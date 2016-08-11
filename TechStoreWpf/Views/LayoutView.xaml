@@ -58,7 +58,7 @@
                 </Menu.ItemsPanel>
                 <MenuItem x:Name="StaffMenu" Header="Employees" Foreground="White" Padding="15, 10" Cursor="Hand" BorderThickness="0" Click="StaffMenu_Click" Background="#FF565656" />
                 <MenuItem x:Name="CustomerMenu" Header="Customers" Foreground="White" Padding="15, 10" Cursor="Hand" BorderThickness="0" Click="CustomerMenu_Click" />
-                <MenuItem Header="Products" Foreground="White" Padding="15, 10" Cursor="Hand" BorderThickness="0" />
+                <MenuItem x:Name="ProductMenu" Header="Products" Foreground="White" Padding="15, 10" Cursor="Hand" BorderThickness="0" Click="ProductMenu_Click" />
             </Menu>
 
             <!-- Splitter -->

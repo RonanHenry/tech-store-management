@@ -11,12 +11,8 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-        <Grid>
-
-            <!-- Customer list UserControl -->
-            <uc:CustomerListUserControl x:Name="CustomerListUserControl" />
-
-        </Grid>
+        <!-- Customer list UserControl -->
+        <uc:CustomerListUserControl x:Name="CustomerListUserControl" />
 
     </ScrollViewer>
     

@@ -65,6 +65,7 @@ namespace TechStoreWpf.Views
         private void StaffMenu_Click(object sender, RoutedEventArgs e)
         {
             CustomerMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
+            ProductMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
             StaffMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF565656");
             ContentFrame.NavigationService.Navigate(new WorkerListView());
         }
@@ -77,8 +78,22 @@ namespace TechStoreWpf.Views
         private void CustomerMenu_Click(object sender, RoutedEventArgs e)
         {
             StaffMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
+            ProductMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
             CustomerMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF565656");
             ContentFrame.NavigationService.Navigate(new CustomerListView());
+        }
+
+        /// <summary>
+        /// Loads the product list view in the frame.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ProductMenu_Click(object sender, RoutedEventArgs e)
+        {
+            StaffMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
+            CustomerMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
+            ProductMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF565656");
+            ContentFrame.NavigationService.Navigate(new ProductListView());
         }
 
         private void Control_MouseLeave(object sender, MouseEventArgs e)

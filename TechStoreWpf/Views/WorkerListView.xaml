@@ -11,12 +11,8 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-        <Grid>
-
-            <!-- Worker list UserControl -->
-            <uc:WorkerListUserControl x:Name="WorkerListUserControl" />
-
-        </Grid>
+        <!-- Worker list UserControl -->
+        <uc:WorkerListUserControl x:Name="WorkerListUserControl" />
 
     </ScrollViewer>
     
