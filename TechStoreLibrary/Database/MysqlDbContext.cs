@@ -39,7 +39,7 @@ namespace TechStoreLibrary.Database
                 case ConnectionResource.LOCALAPI:
                     break;
                 case ConnectionResource.LOCALMYSQL:
-                    InitLocalDatabase();
+                    InitLocalDatabaseAsync();
                     break;
                 default:
                     break;
@@ -48,7 +48,7 @@ namespace TechStoreLibrary.Database
         #endregion
 
         #region Methods
-        public async void InitLocalDatabase()
+        public async void InitLocalDatabaseAsync()
         {
             if (Database.CreateIfNotExists())
             {
