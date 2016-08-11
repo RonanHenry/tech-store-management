@@ -66,7 +66,7 @@ namespace TechStoreWpf.ViewModels
         {
             WorkerListView = workerListView;
 
-            Task.Run(() => LoadWorkers());
+            Task.Run(() => LoadWorkersAsync());
 
             AddWorkerCommand = new RelayCommand(ExecAddWorker, CanAddWorker);
             EditWorkerCommand = new RelayCommand(ExecEditWorker, CanEditWorker);
@@ -78,7 +78,7 @@ namespace TechStoreWpf.ViewModels
         /// <summary>
         /// Loads all workers from data resource.
         /// </summary>
-        public async void LoadWorkers()
+        public async void LoadWorkersAsync()
         {
             using (var ctx = new MysqlDbContext(App.DataSource))
             {
