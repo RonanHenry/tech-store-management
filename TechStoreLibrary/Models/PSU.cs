@@ -74,8 +74,8 @@ namespace TechStoreLibrary.Models
         {
         }
 
-        public PSU(string brand, string name, string description, string condition, decimal price, string rating, int power, bool isModular)
-            : base(brand, name, description, condition, price)
+        public PSU(string brand, string name, string description, string condition, int stock, decimal price, string rating, int power, bool isModular)
+            : base(brand, name, description, condition, stock, price)
         {
             Rating = rating;
             Power = power;
@@ -99,6 +99,7 @@ namespace TechStoreLibrary.Models
             psu.Name = psuData.Names[brandIndex][Faker.Number.RandomNumber(0, psuData.Names[brandIndex].Count)];
             psu.Description = "Some power supply description";
             psu.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length)];
+            psu.Stock = Faker.Number.RandomNumber(0, 51);
             psu.Price = Faker.Number.RandomNumber(50, 500);
             psu.Rating = psuData.Ratings[Faker.Number.RandomNumber(0, psuData.Ratings.Length)];
             psu.Power = psuData.Powers[Faker.Number.RandomNumber(0, psuData.Powers.Length)];

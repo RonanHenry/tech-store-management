@@ -74,8 +74,8 @@ namespace TechStoreLibrary.Models
         {
         }
 
-        public CPU(string brand, string name, string description, string condition, decimal price, string socketType, int coresAmount, decimal frequency)
-            : base(brand, name, description, condition, price)
+        public CPU(string brand, string name, string description, string condition, int stock, decimal price, string socketType, int coresAmount, decimal frequency)
+            : base(brand, name, description, condition, stock, price)
         {
             SocketType = socketType;
             CoresAmount = coresAmount;
@@ -99,6 +99,7 @@ namespace TechStoreLibrary.Models
             cpu.Name = cpuData.Names[brandIndex][Faker.Number.RandomNumber(0, cpuData.Names[brandIndex].Count)];
             cpu.Description = "Some CPU description";
             cpu.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length)];
+            cpu.Stock = Faker.Number.RandomNumber(0, 51);
             cpu.Price = Faker.Number.RandomNumber(30, 450);
             cpu.SocketType = cpuData.Sockets[brandIndex][Faker.Number.RandomNumber(0, cpuData.Sockets[brandIndex].Count)];
             cpu.CoresAmount = cpuData.CoresAmount[Faker.Number.RandomNumber(0, cpuData.CoresAmount.Length)];

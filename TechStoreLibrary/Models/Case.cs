@@ -74,8 +74,8 @@ namespace TechStoreLibrary.Models
         {
         }
 
-        public Case(string brand, string name, string description, decimal price, string type, string condition, string frontIO, bool hasWindow)
-            : base(brand, name, description, condition, price)
+        public Case(string brand, string name, string description, int stock, decimal price, string type, string condition, string frontIO, bool hasWindow)
+            : base(brand, name, description, condition, stock, price)
         {
             Type = type;
             FrontIO = frontIO;
@@ -99,6 +99,7 @@ namespace TechStoreLibrary.Models
             pcCase.Name = caseData.Names[brandIndex][Faker.Number.RandomNumber(0, caseData.Names[brandIndex].Count)];
             pcCase.Description = "Some case description";
             pcCase.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length)];
+            pcCase.Stock = Faker.Number.RandomNumber(0, 51);
             pcCase.Price = Faker.Number.RandomNumber(40, 350);
             pcCase.Type = caseData.Types[Faker.Number.RandomNumber(0, caseData.Types.Length)];
             pcCase.FrontIO = caseData.FrontIOs[Faker.Number.RandomNumber(0, caseData.FrontIOs.Length)];

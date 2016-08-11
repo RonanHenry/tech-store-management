@@ -19,6 +19,7 @@ namespace TechStoreLibrary.Models
         private string name;
         private string description;
         private string condition;
+        private int stock;
         private decimal price;
         #endregion
 
@@ -105,6 +106,22 @@ namespace TechStoreLibrary.Models
         }
 
         /// <summary>
+        /// Product's stock amount.
+        /// </summary>
+        public int Stock
+        {
+            get
+            {
+                return stock;
+            }
+            set
+            {
+                stock = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Product's price.
         /// </summary>
         public decimal Price
@@ -126,12 +143,13 @@ namespace TechStoreLibrary.Models
         {
         }
 
-        public Product(string brand, string name, string description, string condition, decimal price)
+        public Product(string brand, string name, string description, string condition, int stock, decimal price)
         {
             Brand = brand;
             Name = name;
             Description = description;
             Condition = condition;
+            Stock = stock;
             Price = price;
         }
         #endregion

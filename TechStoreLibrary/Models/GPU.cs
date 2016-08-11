@@ -74,8 +74,8 @@ namespace TechStoreLibrary.Models
         {
         }
 
-        public GPU(string brand, string name, string description, string condition, decimal price, string chipsetMaker, int memoryAmount, bool vrReady)
-            : base(brand, name, description, condition, price)
+        public GPU(string brand, string name, string description, string condition, int stock, decimal price, string chipsetMaker, int memoryAmount, bool vrReady)
+            : base(brand, name, description, condition, stock, price)
         {
             ChipsetMaker = chipsetMaker;
             MemoryAmount = memoryAmount;
@@ -100,6 +100,7 @@ namespace TechStoreLibrary.Models
             gpu.Name = gpuData.Names[chipsetMakerIndex][Faker.Number.RandomNumber(0, gpuData.Names[chipsetMakerIndex].Count)];
             gpu.Description = "Some GPU description";
             gpu.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length)];
+            gpu.Stock = Faker.Number.RandomNumber(0, 51);
             gpu.Price = Faker.Number.RandomNumber(60, 1020);
             gpu.MemoryAmount = gpuData.MemoryAmount[Faker.Number.RandomNumber(0, gpuData.MemoryAmount.Length)];
             gpu.VrReady = Faker.Number.Bool();

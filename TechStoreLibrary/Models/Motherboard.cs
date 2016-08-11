@@ -91,8 +91,8 @@ namespace TechStoreLibrary.Models
         {
         }
 
-        public Motherboard(string brand, string name, string description, string condition, decimal price, string platform, string chipset, string cpuSocket, string usage)
-            : base(brand, name, description, condition, price)
+        public Motherboard(string brand, string name, string description, string condition, int stock, decimal price, string platform, string chipset, string cpuSocket, string usage)
+            : base(brand, name, description, condition, stock, price)
         {
             Platform = platform;
             Chipset = chipset;
@@ -119,6 +119,7 @@ namespace TechStoreLibrary.Models
             motherboard.Name = motherboardData.Names[brandIndex][platformIndex][Faker.Number.RandomNumber(0, motherboardData.Names[brandIndex][platformIndex].Count)];
             motherboard.Description = "Some motherboard description";
             motherboard.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length)];
+            motherboard.Stock = Faker.Number.RandomNumber(0, 51);
             motherboard.Price = Faker.Number.RandomNumber(50, 650);
             motherboard.Chipset = motherboardData.Chipsets[platformIndex][Faker.Number.RandomNumber(0, motherboardData.Chipsets[platformIndex].Count)];
             motherboard.CPUSocket = motherboardData.CPUSockets[platformIndex][Faker.Number.RandomNumber(0, motherboardData.CPUSockets[platformIndex].Count)];

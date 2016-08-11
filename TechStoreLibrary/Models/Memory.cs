@@ -94,8 +94,8 @@ namespace TechStoreLibrary.Models
         {
         }
 
-        public Memory(string brand, string name, string description, string condition, decimal price, string type, int speed, int latency)
-            : base(brand, name, description, condition, price)
+        public Memory(string brand, string name, string description, string condition, int stock, decimal price, string type, int speed, int latency)
+            : base(brand, name, description, condition, stock, price)
         {
             Type = type;
             Speed = speed;
@@ -119,6 +119,7 @@ namespace TechStoreLibrary.Models
             memory.Name = memoryData.Names[brandIndex][Faker.Number.RandomNumber(0, memoryData.Names[brandIndex].Count)];
             memory.Description = "Some memory description";
             memory.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length)];
+            memory.Stock = Faker.Number.RandomNumber(0, 51);
             memory.Price = Faker.Number.RandomNumber(30, 800);
             memory.Type = memoryData.Types[Faker.Number.RandomNumber(0, memoryData.Types.Length)];
             memory.Capacity = memoryData.Capacities[Faker.Number.RandomNumber(0, memoryData.Capacities.Length)];

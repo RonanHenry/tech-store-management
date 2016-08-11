@@ -74,8 +74,8 @@ namespace TechStoreLibrary.Models
         {
         }
 
-        public Storage(string brand, string name, string description, string condition, decimal price, string type, string speed, int capacity)
-            : base(brand, name, description, condition, price)
+        public Storage(string brand, string name, string description, string condition, int stock, decimal price, string type, string speed, int capacity)
+            : base(brand, name, description, condition, stock, price)
         {
             Type = type;
             Speed = speed;
@@ -101,6 +101,7 @@ namespace TechStoreLibrary.Models
             storageComponent.Name = storageData.Names[typeIndex][brandIndex][Faker.Number.RandomNumber(0, storageData.Names[typeIndex][brandIndex].Count)];
             storageComponent.Description = "Some storage description";
             storageComponent.Condition = commonData.Conditions[Faker.Number.RandomNumber(0, commonData.Conditions.Length)];
+            storageComponent.Stock = Faker.Number.RandomNumber(0, 51);
             storageComponent.Price = Faker.Number.RandomNumber(40, 1100);
             storageComponent.Speed = storageData.Speeds[typeIndex][Faker.Number.RandomNumber(0, storageData.Speeds[typeIndex].Count)];
             storageComponent.Capacity = storageData.Capacities[Faker.Number.RandomNumber(0, storageData.Capacities.Length)];
