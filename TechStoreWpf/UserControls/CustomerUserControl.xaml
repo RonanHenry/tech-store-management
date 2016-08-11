@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="TechStoreWpf.UserControls.CustomerUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TechStoreWpf.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <Grid x:Name="CustomerGrid" Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <!-- Customer's first name -->
+        <Label x:Name="CustomerFirstNameLbl" Content="First name" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
+        <TextBox x:Name="CustomerFirstNameTxt" Text="{Binding Customer.FirstName}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 10" />
+
+        <!-- Customer's last name -->
+        <Label x:Name="CustomerLastNameLbl" Content="Last name" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
+        <TextBox x:Name="CustomerLastNameTxt" Text="{Binding Customer.LastName}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 10" />
+
+        <!-- Customer's money -->
+        <Label x:Name="CustomerMoneyLbl" Content="Money" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
+        <TextBox x:Name="CustomerMoneyTxt" Text="{Binding Customer.Money}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 10" />
+
+        <!-- Customer's address -->
+        <GroupBox Header="Address" Grid.Row="3" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="2" Padding="10" FontSize="14">
+
+            <Grid DataContext="{Binding Customer.Address}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Street -->
+                <Label x:Name="CustomerAddressStreetLbl" Content="Street" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <TextBox x:Name="CustomerAddressStreetTxt" Text="{Binding Street}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5" Margin="0, 10" />
+
+                <!-- ZIP code -->
+                <Label x:Name="CustomerAddressZipCodeLbl" Content="ZIP code" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <TextBox x:Name="CustomerAddressZipCodeTxt" Text="{Binding ZipCode}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5" Margin="0, 10" />
+
+                <!-- City -->
+                <Label x:Name="CustomerAddressCityLbl" Content="City" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <TextBox x:Name="CustomerAddressCityTxt" Text="{Binding City}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5" Margin="0, 10" />
+
+                <!-- Country -->
+                <Label x:Name="CustomerAddressCountryLbl" Content="Country" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <TextBox x:Name="CustomerAddressCountryTxt" Text="{Binding Country}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5" Margin="0, 10" />
+
+            </Grid>
+            
+        </GroupBox>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0, 10, 0, 0">
+            <Button x:Name="BackBtn" Content="Cancel" Click="BackBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="30, 5" Margin="10, 0, 0, 0" />
+            <Button x:Name="SaveWorkerBtn" Content="Save" Command="{Binding SaveCustomerCommand}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="30, 5" Margin="10, 0, 0, 0" />
+        </StackPanel>
+
+    </Grid>
+    
+</UserControl>

@@ -5,12 +5,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TechStoreWpf.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             Loaded="UserControl_Loaded">
 
     <Grid Margin="10">
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Title -->
+        <TextBlock Text="Customers" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+            <Button x:Name="AddCustomer" Content="Add" Command="{Binding AddCustomerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="5, 0, 0, 0" MouseEnter="AddCustomer_MouseEnter" MouseLeave="Control_MouseLeave" />
+            <Button x:Name="EditCustomer" Content="Edit" Command="{Binding EditCustomerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="5, 0, 0, 0" MouseEnter="EditCustomer_MouseEnter" MouseLeave="Control_MouseLeave" />
+            <Button x:Name="DeleteCustomer" Content="Delete" Command="{Binding DeleteCustomerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="5, 0, 0, 0" MouseEnter="DeleteCustomer_MouseEnter" MouseLeave="Control_MouseLeave" />
+        </StackPanel>
+        
         <!-- Customer list -->
-        <DataGrid x:Name="CustomerList" ItemsSource="{Binding Customers}" HorizontalAlignment="Center" VerticalAlignment="Top" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" CanUserAddRows="False" IsReadOnly="True" AlternatingRowBackground="AliceBlue" FontSize="16">
+        <DataGrid x:Name="CustomerList" ItemsSource="{Binding Customers}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" AlternatingRowBackground="AliceBlue" FontSize="14" Margin="0, 10, 0, 0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                 <DataGridTextColumn Header="First name" Binding="{Binding FirstName}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />

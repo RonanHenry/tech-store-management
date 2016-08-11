@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TechStoreWpf.ViewModels;
 
 namespace TechStoreWpf.Views
 {
@@ -20,9 +21,39 @@ namespace TechStoreWpf.Views
     /// </summary>
     public partial class CustomerListView : Page
     {
+        #region Attributes
+        private CustomerListViewModel customerListViewModel;
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// ViewModel of the view.
+        /// </summary>
+        public CustomerListViewModel CustomerListViewModel
+        {
+            get
+            {
+                return customerListViewModel;
+            }
+            set
+            {
+                customerListViewModel = value;
+            }
+        }
+        #endregion
+
+        #region Constructors
         public CustomerListView()
         {
             InitializeComponent();
+
+            CustomerListViewModel = new CustomerListViewModel(this);
+            DataContext = CustomerListViewModel;
         }
+        #endregion
+
+        #region Methods
+
+        #endregion
     }
 }

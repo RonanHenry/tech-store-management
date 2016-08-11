@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Tech Store Management" Height="350" Width="525"
         ShowsNavigationUI="False"
-        Source="Views/Layout.xaml">
+        Source="Views/LayoutView.xaml">
 
 </NavigationWindow>
