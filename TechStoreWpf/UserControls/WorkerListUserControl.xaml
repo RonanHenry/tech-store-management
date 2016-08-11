@@ -24,9 +24,9 @@
 
         <!-- Buttons -->
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
-            <Button x:Name="AddWorker" Content="Add" Command="{Binding AddWorkerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="5, 0, 0, 0" MouseEnter="AddWorker_MouseEnter" MouseLeave="Control_MouseLeave" />
-            <Button x:Name="EditWorker" Content="Edit" Command="{Binding EditWorkerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="5, 0, 0, 0" MouseEnter="EditWorker_MouseEnter" MouseLeave="Control_MouseLeave" />
-            <Button x:Name="DeleteWorker" Content="Delete" Command="{Binding DeleteWorkerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="5, 0, 0, 0" MouseEnter="DeleteWorker_MouseEnter" MouseLeave="Control_MouseLeave" />
+            <Button x:Name="AddWorker" Content="Add" Command="{Binding AddWorkerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" MouseEnter="AddWorker_MouseEnter" MouseLeave="Control_MouseLeave" />
+            <Button x:Name="EditWorker" Content="Edit" Command="{Binding EditWorkerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" MouseEnter="EditWorker_MouseEnter" MouseLeave="Control_MouseLeave" />
+            <Button x:Name="DeleteWorker" Content="Delete" Command="{Binding DeleteWorkerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" MouseEnter="DeleteWorker_MouseEnter" MouseLeave="Control_MouseLeave" />
         </StackPanel>
 
         <!-- Worker list -->

@@ -24,9 +24,9 @@
 
         <!-- Buttons -->
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
-            <Button x:Name="AddCustomer" Content="Add" Command="{Binding AddCustomerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="5, 0, 0, 0" MouseEnter="AddCustomer_MouseEnter" MouseLeave="Control_MouseLeave" />
-            <Button x:Name="EditCustomer" Content="Edit" Command="{Binding EditCustomerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="5, 0, 0, 0" MouseEnter="EditCustomer_MouseEnter" MouseLeave="Control_MouseLeave" />
-            <Button x:Name="DeleteCustomer" Content="Delete" Command="{Binding DeleteCustomerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="5, 0, 0, 0" MouseEnter="DeleteCustomer_MouseEnter" MouseLeave="Control_MouseLeave" />
+            <Button x:Name="AddCustomer" Content="Add" Command="{Binding AddCustomerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" MouseEnter="AddCustomer_MouseEnter" MouseLeave="Control_MouseLeave" />
+            <Button x:Name="EditCustomer" Content="Edit" Command="{Binding EditCustomerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" MouseEnter="EditCustomer_MouseEnter" MouseLeave="Control_MouseLeave" />
+            <Button x:Name="DeleteCustomer" Content="Delete" Command="{Binding DeleteCustomerCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" MouseEnter="DeleteCustomer_MouseEnter" MouseLeave="Control_MouseLeave" />
         </StackPanel>
         
         <!-- Customer list -->
