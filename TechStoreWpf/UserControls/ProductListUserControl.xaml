@@ -4,10 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TechStoreWpf.UserControls"
+             xmlns:hp="clr-namespace:TechStoreWpf.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              Loaded="UserControl_Loaded">
-    
+
+    <UserControl.Resources>
+        <hp:BoolToStringConverter x:Key="BoolToStringConverter" />
+    </UserControl.Resources>
+
     <Grid Margin="10">
 
         <!-- Product categories -->
@@ -44,8 +49,8 @@
                             <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Socket" Binding="{Binding SocketType}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
-                            <DataGridTextColumn Header="Cores" Binding="{Binding CoresAmount}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
-                            <DataGridTextColumn Header="Clock speed" Binding="{Binding Frequency}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Number of cores" Binding="{Binding CoresAmount}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Clock speed (GHz)" Binding="{Binding Frequency}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Condition" Binding="{Binding Condition}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Description" Binding="{Binding Description}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
@@ -60,6 +65,45 @@
             <!-- GPU products -->
             <TabItem Header="GPUs">
 
+                <Grid Margin="10">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Title -->
+                    <TextBlock Text="Graphics cards" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
+
+                    <!-- Buttons -->
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                        <Button x:Name="AddGPU" Content="Add" Command="{Binding AddGPUCommand}" MouseEnter="AddGPU_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
+                        <Button x:Name="EditGPU" Content="Edit" Command="{Binding EditGPUCommand}" MouseEnter="EditGPU_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
+                        <Button x:Name="DeleteGPU" Content="Delete" Command="{Binding DeleteGPUCommand}" MouseEnter="DeleteGPU_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
+                    </StackPanel>
+
+                    <!-- GPU data list -->
+                    <DataGrid x:Name="GPUList" ItemsSource="{Binding GPUs}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" AlternatingRowBackground="AliceBlue" FontSize="14" Margin="0, 10, 0, 0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Chipset maker" Binding="{Binding ChipsetMaker}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Onboard memory (GB)" Binding="{Binding MemoryAmount}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="VR ready" Binding="{Binding VrReady, Converter={StaticResource BoolToStringConverter}}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Condition" Binding="{Binding Condition}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Description" Binding="{Binding Description}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+                
             </TabItem>
 
             <!-- Motherboard products -->

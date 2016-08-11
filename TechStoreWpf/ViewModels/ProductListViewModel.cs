@@ -19,6 +19,7 @@ namespace TechStoreWpf.ViewModels
         #region Attributes
         private ProductListView productListView;
         private ObservableCollection<CPU> cpus;
+        private ObservableCollection<GPU> gpus;
         #endregion
 
         #region Properties
@@ -53,9 +54,28 @@ namespace TechStoreWpf.ViewModels
             }
         }
 
+        /// <summary>
+        /// GPU products list.
+        /// </summary>
+        public ObservableCollection<GPU> GPUs
+        {
+            get
+            {
+                return gpus;
+            }
+            set
+            {
+                gpus = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand AddCPUCommand { get; private set; }
         public ICommand EditCPUCommand { get; private set; }
         public ICommand DeleteCPUCommand { get; private set; }
+        public ICommand AddGPUCommand { get; private set; }
+        public ICommand EditGPUCommand { get; private set; }
+        public ICommand DeleteGPUCommand { get; private set; }
         #endregion
 
         #region Constructors
@@ -68,6 +88,9 @@ namespace TechStoreWpf.ViewModels
             AddCPUCommand = new RelayCommand(ExecAddCPU, CanAddProduct);
             EditCPUCommand = new RelayCommand(ExecEditCPU, CanEditCPU);
             DeleteCPUCommand = new RelayCommand(ExecDeleteCPU, CanDeleteCPU);
+            AddGPUCommand = new RelayCommand(ExecAddGPU, CanAddProduct);
+            EditGPUCommand = new RelayCommand(ExecEditGPU, CanEditGPU);
+            DeleteGPUCommand = new RelayCommand(ExecDeleteGPU, CanDeleteGPU);
         }
         #endregion
 
@@ -86,6 +109,7 @@ namespace TechStoreWpf.ViewModels
                         break;
                     case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
                         CPUs = new ObservableCollection<CPU>(await ctx.DbSetCPUs.ToListAsync());
+                        GPUs = new ObservableCollection<GPU>(await ctx.DbSetGPUs.ToListAsync());
                         break;
                     default:
                         break;
@@ -143,6 +167,55 @@ namespace TechStoreWpf.ViewModels
         }
 
         private void ExecDeleteCPU(object obj)
+        {
+
+        }
+
+        private void ExecAddGPU(object obj)
+        {
+
+        }
+
+        /// <summary>
+        /// Edition is active only when a GPU is selected.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private bool CanEditGPU(object obj)
+        {
+            if (ProductListView.ProductListUserControl.GPUList.SelectedIndex > -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void ExecEditGPU(object obj)
+        {
+
+        }
+
+        /// <summary>
+        /// Deletion is active only when a GPU is selected.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private bool CanDeleteGPU(object obj)
+        {
+            if (ProductListView.ProductListUserControl.GPUList.SelectedIndex > -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void ExecDeleteGPU(object obj)
         {
 
         }

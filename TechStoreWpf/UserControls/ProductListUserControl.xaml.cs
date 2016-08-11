@@ -76,6 +76,21 @@ namespace TechStoreWpf.UserControls
         {
             StatusBar.Text = "Delete selected CPU product";
         }
+
+        private void AddGPU_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Add a graphics card";
+        }
+
+        private void EditGPU_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Edit selected graphics card";
+        }
+
+        private void DeleteGPU_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Delete selected graphics card";
+        }
         #endregion
     }
 }
