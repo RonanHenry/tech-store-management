@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TechStoreLibrary.Models;
+using TechStoreWpf.Helpers;
 using TechStoreWpf.ViewModels;
 
 namespace TechStoreWpf.Views
@@ -60,7 +61,12 @@ namespace TechStoreWpf.Views
         #endregion
 
         #region Methods
-
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LayoutView layoutView = (LayoutView)Utility.FindParent<Page>(this, "LayoutPage");
+            layoutView.CustomerMenu.Background = (Brush)layoutView.BrushConverter.ConvertFrom("#FF333333");
+            layoutView.StaffMenu.Background = (Brush)layoutView.BrushConverter.ConvertFrom("#FF565656");
+        }
         #endregion
     }
 }

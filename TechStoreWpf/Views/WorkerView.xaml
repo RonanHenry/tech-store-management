@@ -7,7 +7,8 @@
       xmlns:uc="clr-namespace:TechStoreWpf.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="WorkerView">
+      Title="WorkerView"
+      Loaded="Page_Loaded">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         
@@ -18,7 +19,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Staff member" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="0,20,0,0" />
+            <!-- Title -->
+            <TextBlock Text="Employee" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" Margin="0, 10, 0, 0" />
 
             <!-- Worker UserControl -->
             <uc:WorkerUserControl Grid.Row="1" />

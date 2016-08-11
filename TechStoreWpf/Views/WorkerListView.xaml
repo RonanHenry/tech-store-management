@@ -13,15 +13,8 @@
 
         <Grid>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <TextBlock Text="Staff members" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="0,20,0,0" />
-            
             <!-- Worker list UserControl -->
-            <uc:WorkerListUserControl x:Name="WorkerListUserControl" Grid.Row="1" />
+            <uc:WorkerListUserControl x:Name="WorkerListUserControl" />
 
         </Grid>
 

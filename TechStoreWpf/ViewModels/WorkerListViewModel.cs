@@ -12,6 +12,8 @@ using TechStoreWpf.Helpers;
 using TechStoreWpf.ViewModels.Base;
 using TechStoreWpf.Views;
 using TechStoreLibrary.Enums;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace TechStoreWpf.ViewModels
 {
@@ -68,19 +70,30 @@ namespace TechStoreWpf.ViewModels
 
             AddWorkerCommand = new RelayCommand(ExecAddWorker, CanAddWorker);
             EditWorkerCommand = new RelayCommand(ExecEditWorker, CanEditWorker);
-            DeleteWorkerCommand = new RelayCommand(ExecDeleteWorker, CanDeleteWorker);
+            DeleteWorkerCommand = new RelayCommand(ExecDeleteWorkerAsync, CanDeleteWorker);
         }
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Loads all workers from data resource.
+        /// </summary>
         public async void LoadWorkers()
         {
+            //Application.Current.Dispatcher.Invoke(
+            //System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate
+            //{
+            //    Layout layout = (Layout)Utility.FindParent<Page>(WorkerListView, "LayoutView");
+            //    layout.StatusBarTxt.Text = "Loading data...";
+            //});
+
             using (var ctx = new MysqlDbContext(App.DataSource))
             {
                 switch (App.DataSource)
                 {
                     case ConnectionResource.LOCALAPI:
                         break;
+                        // Code API
                     case ConnectionResource.LOCALMYSQL:
                         Workers = new ObservableCollection<Worker>(await ctx.DbSetWorkers.Include(w => w.Address).ToListAsync());
                         break;
@@ -140,7 +153,7 @@ namespace TechStoreWpf.ViewModels
             }
         }
 
-        private async void ExecDeleteWorker(object obj)
+        private async void ExecDeleteWorkerAsync(object obj)
         {
             using (var ctx = new MysqlDbContext(App.DataSource))
             {

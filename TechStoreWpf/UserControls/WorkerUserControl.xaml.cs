@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TechStoreLibrary.Models;
+using TechStoreWpf.Helpers;
 using TechStoreWpf.Views;
 
 namespace TechStoreWpf.UserControls
@@ -29,12 +30,7 @@ namespace TechStoreWpf.UserControls
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            var parent = VisualTreeHelper.GetParent(this);
-            while (!(parent is Page))
-            {
-                parent = VisualTreeHelper.GetParent(parent);
-            }
-            (parent as Page).NavigationService.Navigate(new WorkerListView());
+            Utility.FindParent<Page>(this).NavigationService.Navigate(new WorkerListView());
         }
     }
 }
