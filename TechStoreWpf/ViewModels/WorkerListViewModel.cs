@@ -80,13 +80,6 @@ namespace TechStoreWpf.ViewModels
         /// </summary>
         public async void LoadWorkers()
         {
-            //Application.Current.Dispatcher.Invoke(
-            //System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate
-            //{
-            //    Layout layout = (Layout)Utility.FindParent<Page>(WorkerListView, "LayoutView");
-            //    layout.StatusBarTxt.Text = "Loading data...";
-            //});
-
             using (var ctx = new MysqlDbContext(App.DataSource))
             {
                 switch (App.DataSource)
