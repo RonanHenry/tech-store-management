@@ -154,11 +154,90 @@
             <!-- Memory products -->
             <TabItem Header="Memory">
 
+                <Grid Margin="10">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Title -->
+                    <TextBlock Text="Random Access Memory (RAM)" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
+
+                    <!-- Buttons -->
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                        <Button x:Name="AddMemory" Content="Add" Command="{Binding AddMemoryCommand}" MouseEnter="AddMemory_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
+                        <Button x:Name="EditMemory" Content="Edit" Command="{Binding EditMemoryCommand}" MouseEnter="EditMemory_MouseEnter"  MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
+                        <Button x:Name="DeleteMemory" Content="Delete" Command="{Binding DeleteMemoryCommand}" MouseEnter="DeleteMemory_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
+                    </StackPanel>
+
+                    <!-- RAM data list -->
+                    <DataGrid x:Name="MemoryList" ItemsSource="{Binding Rams}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" AlternatingRowBackground="AliceBlue" FontSize="14" Margin="0, 10, 0, 0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Capacity (GB)" Binding="{Binding Capacity}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Speed (MHz)" Binding="{Binding Speed}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Latency" Binding="{Binding Latency}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Condition" Binding="{Binding Condition}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Description" Binding="{Binding Description}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+                
             </TabItem>
 
             <!-- Storage products -->
             <TabItem Header="Storage">
 
+                <Grid Margin="10">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Title -->
+                    <TextBlock Text="Storage" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
+
+                    <!-- Buttons -->
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                        <Button x:Name="AddStorage" Content="Add" Command="{Binding AddStorageCommand}" MouseEnter="AddStorage_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
+                        <Button x:Name="EditStorage" Content="Edit" Command="{Binding EditStorageCommand}" MouseEnter="EditStorage_MouseEnter"  MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
+                        <Button x:Name="DeleteStorage" Content="Delete" Command="{Binding DeleteStorageCommand}" MouseEnter="DeleteStorage_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
+                    </StackPanel>
+
+                    <!-- Storage data list -->
+                    <DataGrid x:Name="StorageList" ItemsSource="{Binding StorageComponents}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" AlternatingRowBackground="AliceBlue" FontSize="14" Margin="0, 10, 0, 0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Capacity (GB)" Binding="{Binding Capacity}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Speed (MHz)" Binding="{Binding Speed}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Condition" Binding="{Binding Condition}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Description" Binding="{Binding Description}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+                
             </TabItem>
 
             <!-- Power supply products -->

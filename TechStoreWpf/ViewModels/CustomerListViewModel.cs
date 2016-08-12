@@ -73,6 +73,9 @@ namespace TechStoreWpf.ViewModels
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Loads all customers.
+        /// </summary>
         public async void LoadCustomersAsync()
         {
             using (var ctx = new MysqlDbContext(App.DataSource))
@@ -96,6 +99,10 @@ namespace TechStoreWpf.ViewModels
             return true;
         }
 
+        /// <summary>
+        /// Navigates to the customer form view.
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecAddCustomer(object obj)
         {
             CustomerListView.NavigationService.Navigate(new CustomerView());
@@ -108,7 +115,7 @@ namespace TechStoreWpf.ViewModels
         /// <returns></returns>
         private bool CanEditCustomer(object obj)
         {
-            if (CustomerListView.CustomerListUserControl.CustomerList.SelectedIndex > -1)
+            if (CustomerListView.CustomerListUserControl.CustomerList.SelectedIndex != -1)
             {
                 return true;
             }
@@ -118,6 +125,10 @@ namespace TechStoreWpf.ViewModels
             }
         }
 
+        /// <summary>
+        /// Navigates to the customer form view in edit mode.
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecEditCustomer(object obj)
         {
             CustomerView customerView = new CustomerView((Customer)CustomerListView.CustomerListUserControl.CustomerList.SelectedItem);
@@ -131,7 +142,7 @@ namespace TechStoreWpf.ViewModels
         /// <returns></returns>
         private bool CanDeleteCustomer(object obj)
         {
-            if (CustomerListView.CustomerListUserControl.CustomerList.SelectedIndex > -1)
+            if (CustomerListView.CustomerListUserControl.CustomerList.SelectedIndex != -1)
             {
                 return true;
             }
@@ -141,6 +152,10 @@ namespace TechStoreWpf.ViewModels
             }
         }
 
+        /// <summary>
+        /// Deletes selected customer.
+        /// </summary>
+        /// <param name="obj"></param>
         private async void ExecDeleteCustomerAsync(object obj)
         {
             using (var ctx = new MysqlDbContext(App.DataSource))
@@ -153,11 +168,8 @@ namespace TechStoreWpf.ViewModels
                     case ConnectionResource.LOCALMYSQL:
                         Customer customer = (Customer)CustomerListView.CustomerListUserControl.CustomerList.SelectedItem;
                         Customers.Remove(customer);
-                        await Task.Factory.StartNew(() =>
-                        {
-                            ctx.DbSetCustomers.Attach(customer);
-                            ctx.DbSetCustomers.Remove(customer);
-                        });
+                        ctx.DbSetCustomers.Attach(customer);
+                        ctx.DbSetCustomers.Remove(customer);
                         await ctx.SaveChangesAsync();
                         break;
                     default:

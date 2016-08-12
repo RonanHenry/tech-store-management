@@ -76,7 +76,7 @@ namespace TechStoreWpf.ViewModels
 
         #region Methods
         /// <summary>
-        /// Loads all workers from data resource.
+        /// Loads all workers.
         /// </summary>
         public async void LoadWorkersAsync()
         {
@@ -101,6 +101,10 @@ namespace TechStoreWpf.ViewModels
             return true;
         }
 
+        /// <summary>
+        /// Navigates to the worker form view.
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecAddWorker(object obj)
         {
             WorkerListView.NavigationService.Navigate(new WorkerView());
@@ -113,7 +117,7 @@ namespace TechStoreWpf.ViewModels
         /// <returns></returns>
         private bool CanEditWorker(object obj)
         {
-            if (WorkerListView.WorkerListUserControl.WorkerList.SelectedIndex > -1)
+            if (WorkerListView.WorkerListUserControl.WorkerList.SelectedIndex != -1)
             {
                 return true;
             }
@@ -123,6 +127,10 @@ namespace TechStoreWpf.ViewModels
             }
         }
 
+        /// <summary>
+        /// Navigates to the worker form view in edit mode.
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecEditWorker(object obj)
         {
             WorkerView workerView = new WorkerView((Worker)WorkerListView.WorkerListUserControl.WorkerList.SelectedItem);
@@ -136,7 +144,7 @@ namespace TechStoreWpf.ViewModels
         /// <returns></returns>
         private bool CanDeleteWorker(object obj)
         {
-            if (WorkerListView.WorkerListUserControl.WorkerList.SelectedIndex > -1)
+            if (WorkerListView.WorkerListUserControl.WorkerList.SelectedIndex != -1)
             {
                 return true;
             }
@@ -146,6 +154,10 @@ namespace TechStoreWpf.ViewModels
             }
         }
 
+        /// <summary>
+        /// Deletes selected worker.
+        /// </summary>
+        /// <param name="obj"></param>
         private async void ExecDeleteWorkerAsync(object obj)
         {
             using (var ctx = new MysqlDbContext(App.DataSource))
@@ -158,11 +170,8 @@ namespace TechStoreWpf.ViewModels
                     case ConnectionResource.LOCALMYSQL:
                         Worker worker = (Worker)WorkerListView.WorkerListUserControl.WorkerList.SelectedItem;
                         Workers.Remove(worker);
-                        await Task.Factory.StartNew(() =>
-                        {
-                            ctx.DbSetWorkers.Attach(worker);
-                            ctx.DbSetWorkers.Remove(worker);
-                        });
+                        ctx.DbSetWorkers.Attach(worker);
+                        ctx.DbSetWorkers.Remove(worker);
                         await ctx.SaveChangesAsync();
                         break;
                     default:

@@ -106,6 +106,36 @@ namespace TechStoreWpf.UserControls
         {
             StatusBar.Text = "Delete selected motherboard";
         }
+
+        private void AddMemory_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Add a memory product";
+        }
+
+        private void EditMemory_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Edit selected memory";
+        }
+
+        private void DeleteMemory_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Delete selected memory";
+        }
+
+        private void AddStorage_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Add a memory product";
+        }
+
+        private void EditStorage_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Edit selected storage component";
+        }
+
+        private void DeleteStorage_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Delete selected storage component";
+        }
         #endregion
     }
 }

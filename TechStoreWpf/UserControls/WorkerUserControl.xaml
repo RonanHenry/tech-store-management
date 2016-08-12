@@ -39,7 +39,7 @@
 
         <!-- Worker's email-->
         <Label x:Name="WorkerEmailLbl" Content="Email" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
-        <TextBox x:Name="WorkerEmailTxt" Text="{Binding Worker.Email}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 10" />
+        <TextBox x:Name="WorkerEmailTxt" Text="{Binding Worker.Email}" PreviewKeyDown="NoSpace_PreviewKeyDown" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 10" />
 
         <!-- Worker's address -->
         <GroupBox Header="Address" Grid.Row="4" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="2" Padding="10" FontSize="14">
@@ -63,7 +63,7 @@
 
                 <!-- ZIP code -->
                 <Label x:Name="WorkerAddressZipCodeLbl" Content="ZIP code" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                <TextBox x:Name="WorkerAddressZipCodeTxt" Text="{Binding ZipCode}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5" Margin="0, 10" />
+                <TextBox x:Name="WorkerAddressZipCodeTxt" Text="{Binding ZipCode}" PreviewKeyDown="NoSpace_PreviewKeyDown" PreviewTextInput="WorkerAddressZipCodeTxt_PreviewTextInput" MaxLength="5" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5" Margin="0, 10" />
 
                 <!-- City -->
                 <Label x:Name="WorkerAddressCityLbl" Content="City" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
