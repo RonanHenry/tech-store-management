@@ -136,6 +136,36 @@ namespace TechStoreWpf.UserControls
         {
             StatusBar.Text = "Delete selected storage component";
         }
+
+        private void AddPSU_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Add a power supply product";
+        }
+
+        private void EditPSU_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Edit selected power supply";
+        }
+
+        private void DeletePSU_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Delete selected power supply";
+        }
+
+        private void AddCase_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Add a case product";
+        }
+
+        private void EditCase_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Edit selected case";
+        }
+
+        private void DeleteCase_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Delete selected case";
+        }
         #endregion
     }
 }

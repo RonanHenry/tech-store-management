@@ -23,6 +23,8 @@ namespace TechStoreWpf.ViewModels
         private ObservableCollection<Motherboard> motherboards;
         private ObservableCollection<Memory> rams;
         private ObservableCollection<Storage> storageComponents;
+        private ObservableCollection<PSU> psus;
+        private ObservableCollection<Case> cases;
         #endregion
 
         #region Properties
@@ -121,6 +123,38 @@ namespace TechStoreWpf.ViewModels
             }
         }
 
+        /// <summary>
+        /// PSU products list.
+        /// </summary>
+        public ObservableCollection<PSU> PSUs
+        {
+            get
+            {
+                return psus;
+            }
+            set
+            {
+                psus = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Case products list.
+        /// </summary>
+        public ObservableCollection<Case> Cases
+        {
+            get
+            {
+                return cases;
+            }
+            set
+            {
+                cases = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand AddCPUCommand { get; private set; }
         public ICommand EditCPUCommand { get; private set; }
         public ICommand DeleteCPUCommand { get; private set; }
@@ -140,6 +174,14 @@ namespace TechStoreWpf.ViewModels
         public ICommand AddStorageCommand { get; private set; }
         public ICommand EditStorageCommand { get; private set; }
         public ICommand DeleteStorageCommand { get; private set; }
+
+        public ICommand AddPSUCommand { get; private set; }
+        public ICommand EditPSUCommand { get; private set; }
+        public ICommand DeletePSUCommand { get; private set; }
+
+        public ICommand AddCaseCommand { get; private set; }
+        public ICommand EditCaseCommand { get; private set; }
+        public ICommand DeleteCaseCommand { get; private set; }
         #endregion
 
         #region Constructors
@@ -168,6 +210,14 @@ namespace TechStoreWpf.ViewModels
             AddStorageCommand = new RelayCommand(ExecAddStorage, CanAddProduct);
             EditStorageCommand = new RelayCommand(ExecEditStorage, CanEditStorage);
             DeleteStorageCommand = new RelayCommand(ExecDeleteStorageAsync, CanDeleteStorage);
+
+            AddPSUCommand = new RelayCommand(ExecAddPSU, CanAddProduct);
+            EditPSUCommand = new RelayCommand(ExecEditPSU, CanEditPSU);
+            DeletePSUCommand = new RelayCommand(ExecDeletePSUAsync, CanDeletePSU);
+
+            AddCaseCommand = new RelayCommand(ExecAddCase, CanAddProduct);
+            EditCaseCommand = new RelayCommand(ExecEditCase, CanEditCase);
+            DeleteCaseCommand = new RelayCommand(ExecDeleteCaseAsync, CanDeleteCase);
         }
         #endregion
 
@@ -190,6 +240,8 @@ namespace TechStoreWpf.ViewModels
                         Motherboards = new ObservableCollection<Motherboard>(await ctx.DbSetMotherboards.ToListAsync());
                         Rams = new ObservableCollection<Memory>(await ctx.DbSetMemories.ToListAsync());
                         StorageComponents = new ObservableCollection<Storage>(await ctx.DbSetStorages.ToListAsync());
+                        PSUs = new ObservableCollection<PSU>(await ctx.DbSetPSUs.ToListAsync());
+                        Cases = new ObservableCollection<Case>(await ctx.DbSetCases.ToListAsync());
                         break;
                     default:
                         break;
@@ -584,6 +636,162 @@ namespace TechStoreWpf.ViewModels
                         StorageComponents.Remove(storageComponent);
                         ctx.DbSetStorages.Attach(storageComponent);
                         ctx.DbSetStorages.Remove(storageComponent);
+                        await ctx.SaveChangesAsync();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Navigates to the power supply form view.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void ExecAddPSU(object obj)
+        {
+
+        }
+
+        /// <summary>
+        /// Edition is active only when a power supply is selected.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private bool CanEditPSU(object obj)
+        {
+            if (ProductListView.ProductListUserControl.PSUList.SelectedIndex != -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Navigates to the power supply form view in edit mode.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void ExecEditPSU(object obj)
+        {
+
+        }
+
+        /// <summary>
+        /// Deletion is active only when a power supply is selected.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private bool CanDeletePSU(object obj)
+        {
+            if (ProductListView.ProductListUserControl.PSUList.SelectedIndex != -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Deletes selected power supply.
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void ExecDeletePSUAsync(object obj)
+        {
+            using (var ctx = new MysqlDbContext(App.DataSource))
+            {
+                switch (App.DataSource)
+                {
+                    case TechStoreLibrary.Enums.ConnectionResource.LOCALAPI:
+                        // Code API
+                        break;
+                    case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
+                        PSU psu = (PSU)ProductListView.ProductListUserControl.PSUList.SelectedItem;
+                        PSUs.Remove(psu);
+                        ctx.DbSetPSUs.Attach(psu);
+                        ctx.DbSetPSUs.Remove(psu);
+                        await ctx.SaveChangesAsync();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Navigates to the case form view.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void ExecAddCase(object obj)
+        {
+
+        }
+
+        /// <summary>
+        /// Edition is active only when a case is selected.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private bool CanEditCase(object obj)
+        {
+            if (ProductListView.ProductListUserControl.CaseList.SelectedIndex != -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Navigates to the case form view in edit mode.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void ExecEditCase(object obj)
+        {
+
+        }
+
+        /// <summary>
+        /// Deletion is active only when a case is selected.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private bool CanDeleteCase(object obj)
+        {
+            if (ProductListView.ProductListUserControl.CaseList.SelectedIndex != -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Deletes selected case.
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void ExecDeleteCaseAsync(object obj)
+        {
+            using (var ctx = new MysqlDbContext(App.DataSource))
+            {
+                switch (App.DataSource)
+                {
+                    case TechStoreLibrary.Enums.ConnectionResource.LOCALAPI:
+                        // Code API
+                        break;
+                    case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
+                        Case pcCase = (Case)ProductListView.ProductListUserControl.CaseList.SelectedItem;
+                        Cases.Remove(pcCase);
+                        ctx.DbSetCases.Attach(pcCase);
+                        ctx.DbSetCases.Remove(pcCase);
                         await ctx.SaveChangesAsync();
                         break;
                     default:
