@@ -16,10 +16,10 @@
     <Grid Margin="10">
 
         <!-- Product categories -->
-        <TabControl FontSize="14">
+        <TabControl x:Name="Products" FontSize="14">
 
             <!-- CPU products -->
-            <TabItem Header="CPUs">
+            <TabItem Header="CPU">
 
                 <Grid Margin="10">
 
@@ -63,7 +63,7 @@
             </TabItem>
 
             <!-- GPU products -->
-            <TabItem Header="GPUs">
+            <TabItem Header="GPU">
 
                 <Grid Margin="10">
 
@@ -107,7 +107,7 @@
             </TabItem>
 
             <!-- Motherboard products -->
-            <TabItem Header="Motherboards">
+            <TabItem Header="Motherboard">
 
                 <Grid Margin="10">
 
@@ -228,7 +228,7 @@
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Type" Binding="{Binding Type}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Capacity (GB)" Binding="{Binding Capacity}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
-                            <DataGridTextColumn Header="Speed (MHz)" Binding="{Binding Speed}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Speed" Binding="{Binding Speed}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Condition" Binding="{Binding Condition}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Description" Binding="{Binding Description}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
@@ -241,7 +241,7 @@
             </TabItem>
 
             <!-- Power supply products -->
-            <TabItem Header="PSUs">
+            <TabItem Header="PSU">
 
                 <Grid Margin="10">
 
@@ -285,7 +285,7 @@
             </TabItem>
 
             <!-- Case products -->
-            <TabItem Header="Cases">
+            <TabItem Header="Case">
 
                 <Grid Margin="10">
 

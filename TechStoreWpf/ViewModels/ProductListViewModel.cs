@@ -260,7 +260,7 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecAddCPU(object obj)
         {
-
+            ProductListView.NavigationService.Navigate(new ProductView(new CPU()));
         }
 
         /// <summary>
@@ -286,7 +286,8 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecEditCPU(object obj)
         {
-
+            ProductView productView = new ProductView((CPU)ProductListView.ProductListUserControl.CPUList.SelectedItem);
+            ProductListView.NavigationService.Navigate(productView);
         }
 
         /// <summary>
@@ -338,7 +339,7 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecAddGPU(object obj)
         {
-
+            ProductListView.NavigationService.Navigate(new ProductView(new GPU()));
         }
 
         /// <summary>
@@ -364,7 +365,8 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecEditGPU(object obj)
         {
-
+            ProductView productView = new ProductView((GPU)ProductListView.ProductListUserControl.GPUList.SelectedItem);
+            ProductListView.NavigationService.Navigate(productView);
         }
 
         /// <summary>
@@ -416,7 +418,7 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecAddMotherboard(object obj)
         {
-
+            ProductListView.NavigationService.Navigate(new ProductView(new Motherboard()));
         }
 
         /// <summary>
@@ -442,7 +444,8 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecEditMotherboard(object obj)
         {
-
+            ProductView productView = new ProductView((Motherboard)ProductListView.ProductListUserControl.MotherboardList.SelectedItem);
+            ProductListView.NavigationService.Navigate(productView);
         }
 
         /// <summary>
@@ -494,7 +497,7 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecAddMemory(object obj)
         {
-
+            ProductListView.NavigationService.Navigate(new ProductView(new Memory()));
         }
 
         /// <summary>
@@ -520,7 +523,8 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecEditMemory(object obj)
         {
-
+            ProductView productView = new ProductView((Memory)ProductListView.ProductListUserControl.MemoryList.SelectedItem);
+            ProductListView.NavigationService.Navigate(productView);
         }
 
         /// <summary>
@@ -572,7 +576,7 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecAddStorage(object obj)
         {
-
+            ProductListView.NavigationService.Navigate(new ProductView(new Storage()));
         }
 
         /// <summary>
@@ -598,7 +602,8 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecEditStorage(object obj)
         {
-
+            ProductView productView = new ProductView((Storage)ProductListView.ProductListUserControl.StorageList.SelectedItem);
+            ProductListView.NavigationService.Navigate(productView);
         }
 
         /// <summary>
@@ -650,7 +655,7 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecAddPSU(object obj)
         {
-
+            ProductListView.NavigationService.Navigate(new ProductView(new PSU()));
         }
 
         /// <summary>
@@ -676,7 +681,8 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecEditPSU(object obj)
         {
-
+            ProductView productView = new ProductView((PSU)ProductListView.ProductListUserControl.PSUList.SelectedItem);
+            ProductListView.NavigationService.Navigate(productView);
         }
 
         /// <summary>
@@ -728,7 +734,7 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecAddCase(object obj)
         {
-
+            ProductListView.NavigationService.Navigate(new ProductView(new Case()));
         }
 
         /// <summary>
@@ -754,7 +760,8 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private void ExecEditCase(object obj)
         {
-
+            ProductView productView = new ProductView((Case)ProductListView.ProductListUserControl.CaseList.SelectedItem);
+            ProductListView.NavigationService.Navigate(productView);
         }
 
         /// <summary>

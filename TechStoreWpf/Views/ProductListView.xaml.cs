@@ -50,6 +50,17 @@ namespace TechStoreWpf.Views
             ProductListViewModel = new ProductListViewModel(this);
             DataContext = ProductListViewModel;
         }
+
+        public ProductListView(string activeTab)
+            : this()
+        {
+            TabControl productsTabControl = ProductListViewModel.ProductListView.ProductListUserControl.Products;
+            foreach (TabItem tab in productsTabControl.Items)
+            {
+                if ((string)tab.Header == activeTab)
+                    tab.IsSelected = true;
+            }
+        }
         #endregion
 
         #region Methods
