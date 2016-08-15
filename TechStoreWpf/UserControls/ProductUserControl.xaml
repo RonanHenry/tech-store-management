@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="TechStoreWpf.UserControls.ProductUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TechStoreWpf.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Loaded="UserControl_Loaded">
+
+    <Grid x:Name="ProductGrid" Margin="10" DataContext="{Binding Product}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Product's brand -->
+        <Label x:Name="ProductBrandLbl" Content="Brand" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
+        <ComboBox x:Name="ProductBrandTxt" SelectedValue="{Binding Brand}" SelectedValuePath="Content" Grid.Row="0"  Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="6" Margin="0, 0, 10, 0" />
+
+        <!-- Product's name -->
+        <Label x:Name="ProductNameLbl" Content="Name" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
+        <TextBox x:Name="ProductNameTxt" Text="{Binding Name}" Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" />
+        
+        <!-- Product's description -->
+        <StackPanel x:Name="DescContainer" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="8" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Label x:Name="ProductDescLbl" Content="Description" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" />
+            <TextBox x:Name="ProductDescTxt" Text="{Binding Description}" Height="Auto" MinHeight="100" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" Padding="5" />
+        </StackPanel>
+
+        <!-- Product's condition -->
+        <Label x:Name="ProductConditionLbl" Content="Condition" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
+        <ComboBox x:Name="ProductConditionTxt" SelectedValue="{Binding Condition}" SelectedValuePath="Content" Grid.Row="3"  Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="6" Margin="0, 0, 10, 0">
+            <ComboBoxItem Content="New" />
+            <ComboBoxItem Content="Refurbished" />
+        </ComboBox>
+
+        <!-- Product's stock -->
+        <Label x:Name="ProductStockLbl" Content="Stock" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
+        <TextBox x:Name="ProductStockTxt" Text="{Binding Stock}" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 0, 10, 0" />
+
+        <!-- Product's price -->
+        <Label x:Name="ProductPriceLbl" Content="Price" Grid.Row="3" Grid.Column="6" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
+        <TextBox x:Name="ProductPriceTxt" Text="{Binding Price}" Grid.Row="3" Grid.Column="7" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 10" />
+
+        <StackPanel x:Name="ProductBtns" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="8" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button x:Name="CancelProductBtn" Content="Cancel" Click="CancelProductBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="30, 5" Margin="10, 0, 0, 0" />
+            <Button x:Name="SaveProductBtn" Content="Save" Command="{Binding SaveProductCommand}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="30, 5" Margin="10, 0, 0, 0" />
+        </StackPanel>
+    </Grid>
+
+</UserControl>
