@@ -57,6 +57,11 @@ namespace TechStoreWpf.Views
         #endregion
 
         #region Methods
+        private void LayoutPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            ProductMenu_Click(sender, e);
+        }
+
         /// <summary>
         /// Loads the worker list view in the frame.
         /// </summary>
@@ -109,6 +114,41 @@ namespace TechStoreWpf.Views
         private void AddCustomer_MouseEnter(object sender, MouseEventArgs e)
         {
             StatusBarTxt.Text = "Add a customer";
+        }
+
+        private void AddCPU_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBarTxt.Text = "Add a CPU";
+        }
+
+        private void AddGPU_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBarTxt.Text = "Add a Graphics card";
+        }
+
+        private void AddMotherboard_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBarTxt.Text = "Add a Motherboard";
+        }
+
+        private void AddMemory_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBarTxt.Text = "Add a Memory component";
+        }
+
+        private void AddStorage_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBarTxt.Text = "Add a storage component";
+        }
+
+        private void AddPSU_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBarTxt.Text = "Add a power supply";
+        }
+
+        private void AddCase_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBarTxt.Text = "Add a case";
         }
 
         private void AppAbout_MouseEnter(object sender, MouseEventArgs e)

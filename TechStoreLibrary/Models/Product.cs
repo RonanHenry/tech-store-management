@@ -155,7 +155,7 @@ namespace TechStoreLibrary.Models
         #endregion
 
         #region Methods
-
+        
         #endregion
     }
 }

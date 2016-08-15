@@ -7,7 +7,8 @@
       xmlns:local="clr-namespace:TechStoreWpf.Views"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="Layout">
+      Title="Layout"
+      Loaded="LayoutPage_Loaded">
 
     <!-- Top structure -->
     <DockPanel LastChildFill="True" Background="White">
@@ -19,13 +20,13 @@
                     <MenuItem Name="AddWorker" Header="Employee" Foreground="#FF333333" Command="{Binding AddWorkerCommand}" MouseEnter="AddWorker_MouseEnter" MouseLeave="Control_MouseLeave" />
                     <MenuItem Name="AddCustomer" Header="Customer" Foreground="#FF333333" Command="{Binding AddCustomerCommand}" MouseEnter="AddCustomer_MouseEnter" MouseLeave="Control_MouseLeave" />
                     <MenuItem Header="Product" Foreground="#FF333333">
-                        <MenuItem Header="CPU" Foreground="#FF333333" />
-                        <MenuItem Header="GPU" Foreground="#FF333333" />
-                        <MenuItem Header="Motherboard" Foreground="#FF333333" />
-                        <MenuItem Header="Memory" Foreground="#FF333333" />
-                        <MenuItem Header="Storage" Foreground="#FF333333" />
-                        <MenuItem Header="Power supply" Foreground="#FF333333" />
-                        <MenuItem Header="Case" Foreground="#FF333333" />
+                        <MenuItem Name="AddCPU" Header="CPU" Foreground="#FF333333" Command="{Binding AddCPUCommand}" MouseEnter="AddCPU_MouseEnter" MouseLeave="Control_MouseLeave" />
+                        <MenuItem Name="AddGPU" Header="GPU" Foreground="#FF333333" Command="{Binding AddGPUCommand}" MouseEnter="AddGPU_MouseEnter" MouseLeave="Control_MouseLeave" />
+                        <MenuItem Name="AddMotherboard" Header="Motherboard" Foreground="#FF333333" Command="{Binding AddMotherboardCommand}" MouseEnter="AddMotherboard_MouseEnter" MouseLeave="Control_MouseLeave" />
+                        <MenuItem Name="AddMemory" Header="Memory" Foreground="#FF333333" Command="{Binding AddMemoryCommand}" MouseEnter="AddMemory_MouseEnter" MouseLeave="Control_MouseLeave" />
+                        <MenuItem Name="AddStorage" Header="Storage" Foreground="#FF333333" Command="{Binding AddStorageCommand}" MouseEnter="AddStorage_MouseEnter" MouseLeave="Control_MouseLeave" />
+                        <MenuItem Name="AddPSU" Header="Power supply" Foreground="#FF333333" Command="{Binding AddPSUCommand}"  MouseEnter="AddPSU_MouseEnter" MouseLeave="Control_MouseLeave" />
+                        <MenuItem Name="AddCase" Header="Case" Foreground="#FF333333" Command="{Binding AddCaseCommand}" MouseEnter="AddCase_MouseEnter" MouseLeave="Control_MouseLeave" />
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Name="AppExit" Header="Exit" Foreground="#FF333333" Click="AppExit_Click" MouseEnter="AppExit_MouseEnter" MouseLeave="Control_MouseLeave" />
@@ -66,7 +67,7 @@
             
             <!--  Right panel -->
             <Grid Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Frame x:Name="ContentFrame" Source="WorkerListView.xaml" />
+                <Frame x:Name="ContentFrame" Source="ProductListView.xaml" />
             </Grid>
 
         </Grid>
