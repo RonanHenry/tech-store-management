@@ -63,7 +63,7 @@ namespace TechStoreWpf.ViewModels
             Worker = new Worker();
             Worker.Address = new Address();
 
-            SaveWorkerCommand = new RelayCommand(ExecSaveWorker, CanSaveWorker);
+            SaveWorkerCommand = new RelayCommand(ExecSaveWorkerAsync, CanSaveWorker);
         }
         #endregion
 
@@ -73,7 +73,11 @@ namespace TechStoreWpf.ViewModels
             return true;
         }
 
-        private async void ExecSaveWorker(object obj)
+        /// <summary>
+        /// Adds or updates a worker. 
+        /// </summary>
+        /// <param name="obj"></param>
+        private async void ExecSaveWorkerAsync(object obj)
         {
             using (var ctx = new MysqlDbContext(App.DataSource))
             {

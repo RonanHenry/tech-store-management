@@ -72,6 +72,10 @@ namespace TechStoreWpf.ViewModels
             return true;
         }
 
+        /// <summary>
+        /// Adds or updates a customer.
+        /// </summary>
+        /// <param name="obj"></param>
         private async void ExecSaveCustomerAsync(object obj)
         {
             using (var ctx = new MysqlDbContext(App.DataSource))
