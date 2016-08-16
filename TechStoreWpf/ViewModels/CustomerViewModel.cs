@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TechStoreLibrary.Database;
+using TechStoreLibrary.Enums;
 using TechStoreLibrary.Models;
 using TechStoreWpf.Helpers;
 using TechStoreWpf.ViewModels.Base;
@@ -78,14 +79,22 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private async void ExecSaveCustomerAsync(object obj)
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
+                case ConnectionResource.LOCALAPI:
+                    WebServiceManager<Customer> webServiceManager = new WebServiceManager<Customer>();
+                    if (Customer.Id == 0) // Saving new customer
+                    {
+                        await webServiceManager.PostAsync(Customer);
+                    }
+                    else // Saving updated customer
+                    {
+                        await webServiceManager.PutAsync(Customer);
+                    }
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         if (Customer.Id == 0) // Saving new customer
                         {
                             ctx.DbSetCustomers.Add(Customer);
@@ -97,13 +106,13 @@ namespace TechStoreWpf.ViewModels
                             ctx.Entry(Customer.Address).State = EntityState.Modified;
                             await ctx.SaveChangesAsync();
                         }
-                        break;
-                    default:
-                        break;
-                }
-
-                CustomerView.NavigationService.Navigate(new CustomerListView());
+                    }
+                    break;
+                default:
+                    break;
             }
+            
+            CustomerView.NavigationService.Navigate(new CustomerListView());
         }
         #endregion
     }

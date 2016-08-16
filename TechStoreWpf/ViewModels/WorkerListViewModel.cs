@@ -80,19 +80,21 @@ namespace TechStoreWpf.ViewModels
         /// </summary>
         public async void LoadWorkersAsync()
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            App.SetConnectionResource();
+
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case ConnectionResource.LOCALAPI:
-                        break;
-                        // Code API
-                    case ConnectionResource.LOCALMYSQL:
+                case ConnectionResource.LOCALAPI:
+                    Workers = new ObservableCollection<Worker>(await new WebServiceManager<Worker>().GetAllAsync());
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         Workers = new ObservableCollection<Worker>(await ctx.DbSetWorkers.Include(w => w.Address).ToListAsync());
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -160,23 +162,24 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private async void ExecDeleteWorkerAsync(object obj)
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            Worker worker = (Worker)WorkerListView.WorkerListUserControl.WorkerList.SelectedItem;
+            Workers.Remove(worker);
+
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case ConnectionResource.LOCALMYSQL:
-                        Worker worker = (Worker)WorkerListView.WorkerListUserControl.WorkerList.SelectedItem;
-                        Workers.Remove(worker);
+                case ConnectionResource.LOCALAPI:
+                    await new WebServiceManager<Worker>().DeleteAsync(worker);
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         ctx.DbSetWorkers.Attach(worker);
                         ctx.DbSetWorkers.Remove(worker);
                         await ctx.SaveChangesAsync();
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         #endregion

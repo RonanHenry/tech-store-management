@@ -78,19 +78,21 @@ namespace TechStoreWpf.ViewModels
         /// </summary>
         public async void LoadCustomersAsync()
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            App.SetConnectionResource();
+
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case ConnectionResource.LOCALMYSQL:
+                case ConnectionResource.LOCALAPI:
+                    Customers = new ObservableCollection<Customer>(await new WebServiceManager<Customer>().GetAllAsync());
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(App.DataSource))
+                    {
                         Customers = new ObservableCollection<Customer>(await ctx.DbSetCustomers.Include(c => c.Address).ToListAsync());
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -158,23 +160,24 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private async void ExecDeleteCustomerAsync(object obj)
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            Customer customer = (Customer)CustomerListView.CustomerListUserControl.CustomerList.SelectedItem;
+            Customers.Remove(customer);
+
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case ConnectionResource.LOCALMYSQL:
-                        Customer customer = (Customer)CustomerListView.CustomerListUserControl.CustomerList.SelectedItem;
-                        Customers.Remove(customer);
+                case ConnectionResource.LOCALAPI:
+                    await new WebServiceManager<Customer>().DeleteAsync(customer);
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         ctx.DbSetCustomers.Attach(customer);
                         ctx.DbSetCustomers.Remove(customer);
                         await ctx.SaveChangesAsync();
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         #endregion

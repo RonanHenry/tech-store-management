@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TechStoreLibrary.Database;
+using TechStoreLibrary.Enums;
 using TechStoreLibrary.Models;
 using TechStoreWpf.Helpers;
 using TechStoreWpf.ViewModels.Base;
@@ -78,14 +79,75 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private async void ExecSaveProductAsync(object obj)
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
+                case ConnectionResource.LOCALAPI:
+                    if (Product.Id == 0) // Saving new product
+                    {
+                        if (Product is CPU)
+                        {
+                            await new WebServiceManager<CPU>().PostAsync((CPU)Product);
+                        }
+                        else if (Product is GPU)
+                        {
+                            await new WebServiceManager<GPU>().PostAsync((GPU)Product);
+                        }
+                        else if (Product is Motherboard)
+                        {
+                            await new WebServiceManager<Motherboard>().PostAsync((Motherboard)Product);
+                        }
+                        else if (Product is Memory)
+                        {
+                            await new WebServiceManager<Memory>().PostAsync((Memory)Product);
+                        }
+                        else if (Product is Storage)
+                        {
+                            await new WebServiceManager<Storage>().PostAsync((Storage)Product);
+                        }
+                        else if (Product is PSU)
+                        {
+                            await new WebServiceManager<PSU>().PostAsync((PSU)Product);
+                        }
+                        else // Case
+                        {
+                            await new WebServiceManager<Case>().PostAsync((Case)Product);
+                        }
+                    }
+                    else // Saving updated product
+                    {
+                        if (Product is CPU)
+                        {
+                            await new WebServiceManager<CPU>().PutAsync((CPU)Product);
+                        }
+                        else if (Product is GPU)
+                        {
+                            await new WebServiceManager<GPU>().PutAsync((GPU)Product);
+                        }
+                        else if (Product is Motherboard)
+                        {
+                            await new WebServiceManager<Motherboard>().PutAsync((Motherboard)Product);
+                        }
+                        else if (Product is Memory)
+                        {
+                            await new WebServiceManager<Memory>().PutAsync((Memory)Product);
+                        }
+                        else if (Product is Storage)
+                        {
+                            await new WebServiceManager<Storage>().PutAsync((Storage)Product);
+                        }
+                        else if (Product is PSU)
+                        {
+                            await new WebServiceManager<PSU>().PutAsync((PSU)Product);
+                        }
+                        else // Case
+                        {
+                            await new WebServiceManager<Case>().PutAsync((Case)Product);
+                        }
+                    }
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(App.DataSource))
+                    {
                         if (Product.Id == 0) // Saving new product
                         {
                             if (Product is CPU)
@@ -123,14 +185,14 @@ namespace TechStoreWpf.ViewModels
                             ctx.Entry(Product).State = EntityState.Modified;
                             await ctx.SaveChangesAsync();
                         }
-                        break;
-                    default:
-                        break;
-                }
-
-                string activeTabName = (string)Utility.FindParent<StackPanel>((Button)ProductView.ProductUserControl.SaveProductBtn).Tag;
-                ProductView.NavigationService.Navigate(new ProductListView(activeTabName));
+                    }
+                    break;
+                default:
+                    break;
             }
+
+            string activeTabName = (string)Utility.FindParent<StackPanel>((Button)ProductView.ProductUserControl.SaveProductBtn).Tag;
+            ProductView.NavigationService.Navigate(new ProductListView(activeTabName));
         }
         #endregion
     }

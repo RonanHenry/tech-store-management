@@ -36,10 +36,11 @@ namespace TechStoreLibrary.Database
         {
             switch (connectionResource)
             {
-                case ConnectionResource.LOCALAPI:
+                case ConnectionResource.APIMYSQL:
+                    InitDatabaseAsync();
                     break;
                 case ConnectionResource.LOCALMYSQL:
-                    InitLocalDatabaseAsync();
+                    InitDatabaseAsync();
                     break;
                 default:
                     break;
@@ -48,7 +49,10 @@ namespace TechStoreLibrary.Database
         #endregion
 
         #region Methods
-        public async void InitLocalDatabaseAsync()
+        /// <summary>
+        /// Generates the database and fills it with initial data.
+        /// </summary>
+        public async void InitDatabaseAsync()
         {
             if (Database.CreateIfNotExists())
             {

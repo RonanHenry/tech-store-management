@@ -9,7 +9,7 @@ namespace TechStoreLibrary.Enums
 {
     public enum ConnectionResource : int
     {
-        [StringValue("http://127.0.0.1:5000/api/")]
+        [StringValue("http://localhost:59018/")]
         LOCALAPI = 1,
         [StringValue("Server=localhost;Port=3306;Database=rh_api_tech_store;Uid=root;Pwd=''")]
         APIMYSQL = 2,

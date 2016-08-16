@@ -48,7 +48,7 @@ namespace TechStoreWpf
         /// <summary>
         /// Does a request to the web service to test if it is available.
         /// </summary>
-        public void SetConnectionResource()
+        public static void SetConnectionResource()
         {
             try
             {

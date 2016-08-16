@@ -6,6 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechStoreLibrary", "TechStoreLibrary\TechStoreLibrary.csproj", "{D184F483-EBDF-42F2-B6DC-1A3E26636DBF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechStoreWpf", "TechStoreWpf\TechStoreWpf.csproj", "{D2544A4F-EB7E-4BAB-801F-EFF175F1495C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{83D38856-6840-4929-8F2B-057ADEABDA05} = {83D38856-6840-4929-8F2B-057ADEABDA05}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechStoreWeb", "TechStoreWeb\TechStoreWeb.csproj", "{83D38856-6840-4929-8F2B-057ADEABDA05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +26,10 @@ Global
 		{D2544A4F-EB7E-4BAB-801F-EFF175F1495C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2544A4F-EB7E-4BAB-801F-EFF175F1495C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2544A4F-EB7E-4BAB-801F-EFF175F1495C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83D38856-6840-4929-8F2B-057ADEABDA05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D38856-6840-4929-8F2B-057ADEABDA05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D38856-6840-4929-8F2B-057ADEABDA05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D38856-6840-4929-8F2B-057ADEABDA05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

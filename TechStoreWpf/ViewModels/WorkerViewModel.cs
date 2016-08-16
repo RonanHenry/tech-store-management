@@ -79,14 +79,22 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private async void ExecSaveWorkerAsync(object obj)
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case ConnectionResource.LOCALMYSQL:
+                case ConnectionResource.LOCALAPI:
+                    WebServiceManager<Worker> webServiceManager = new WebServiceManager<Worker>();
+                    if (Worker.Id == 0) // Saving new worker
+                    {
+                        await webServiceManager.PostAsync(Worker);
+                    }
+                    else // Saving updated worker
+                    {
+                        await webServiceManager.PutAsync(Worker);
+                    }
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         if (Worker.Id == 0) // Saving new worker
                         {
                             ctx.DbSetWorkers.Add(Worker);
@@ -98,13 +106,13 @@ namespace TechStoreWpf.ViewModels
                             ctx.Entry(Worker.Address).State = EntityState.Modified;
                             await ctx.SaveChangesAsync();
                         }
-                        break;
-                    default:
-                        break;
-                }
-
-                WorkerView.NavigationService.Navigate(new WorkerListView());
+                    }
+                    break;
+                default:
+                    break;
             }
+            
+            WorkerView.NavigationService.Navigate(new WorkerListView());
         }
         #endregion
     }

@@ -11,6 +11,7 @@ using TechStoreLibrary.Models;
 using TechStoreWpf.Helpers;
 using TechStoreWpf.ViewModels.Base;
 using TechStoreWpf.Views;
+using TechStoreLibrary.Enums;
 
 namespace TechStoreWpf.ViewModels
 {
@@ -227,14 +228,22 @@ namespace TechStoreWpf.ViewModels
         /// </summary>
         public async void LoadProductsAsync()
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            App.SetConnectionResource();
+
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
+                case ConnectionResource.LOCALAPI:
+                    CPUs = new ObservableCollection<CPU>(await new WebServiceManager<CPU>().GetAllAsync());
+                    GPUs = new ObservableCollection<GPU>(await new WebServiceManager<GPU>().GetAllAsync());
+                    Motherboards = new ObservableCollection<Motherboard>(await new WebServiceManager<Motherboard>().GetAllAsync());
+                    Rams = new ObservableCollection<Memory>(await new WebServiceManager<Memory>().GetAllAsync());
+                    StorageComponents = new ObservableCollection<Storage>(await new WebServiceManager<Storage>().GetAllAsync());
+                    PSUs = new ObservableCollection<PSU>(await new WebServiceManager<PSU>().GetAllAsync());
+                    Cases = new ObservableCollection<Case>(await new WebServiceManager<Case>().GetAllAsync());
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         CPUs = new ObservableCollection<CPU>(await ctx.DbSetCPUs.ToListAsync());
                         GPUs = new ObservableCollection<GPU>(await ctx.DbSetGPUs.ToListAsync());
                         Motherboards = new ObservableCollection<Motherboard>(await ctx.DbSetMotherboards.ToListAsync());
@@ -242,10 +251,10 @@ namespace TechStoreWpf.ViewModels
                         StorageComponents = new ObservableCollection<Storage>(await ctx.DbSetStorages.ToListAsync());
                         PSUs = new ObservableCollection<PSU>(await ctx.DbSetPSUs.ToListAsync());
                         Cases = new ObservableCollection<Case>(await ctx.DbSetCases.ToListAsync());
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -313,23 +322,24 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private async void ExecDeleteCPUAsync(object obj)
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            CPU cpu = (CPU)ProductListView.ProductListUserControl.CPUList.SelectedItem;
+            CPUs.Remove(cpu);
+
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
-                        CPU cpu = (CPU)ProductListView.ProductListUserControl.CPUList.SelectedItem;
-                        CPUs.Remove(cpu);
+                case ConnectionResource.LOCALAPI:
+                    await new WebServiceManager<CPU>().DeleteAsync(cpu);
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         ctx.DbSetCPUs.Attach(cpu);
                         ctx.DbSetCPUs.Remove(cpu);
                         await ctx.SaveChangesAsync();
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -392,23 +402,24 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private async void ExecDeleteGPUAsync(object obj)
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            GPU gpu = (GPU)ProductListView.ProductListUserControl.GPUList.SelectedItem;
+            GPUs.Remove(gpu);
+
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
-                        GPU gpu = (GPU)ProductListView.ProductListUserControl.GPUList.SelectedItem;
-                        GPUs.Remove(gpu);
+                case ConnectionResource.LOCALAPI:
+                    await new WebServiceManager<GPU>().DeleteAsync(gpu);
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         ctx.DbSetGPUs.Attach(gpu);
                         ctx.DbSetGPUs.Remove(gpu);
                         await ctx.SaveChangesAsync();
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -471,23 +482,24 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private async void ExecDeleteMotherboardAsync(object obj)
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            Motherboard motherboard = (Motherboard)ProductListView.ProductListUserControl.MotherboardList.SelectedItem;
+            Motherboards.Remove(motherboard);
+
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
-                        Motherboard motherboard = (Motherboard)ProductListView.ProductListUserControl.MotherboardList.SelectedItem;
-                        Motherboards.Remove(motherboard);
+                case ConnectionResource.LOCALAPI:
+                    await new WebServiceManager<Motherboard>().DeleteAsync(motherboard);
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         ctx.DbSetMotherboards.Attach(motherboard);
                         ctx.DbSetMotherboards.Remove(motherboard);
                         await ctx.SaveChangesAsync();
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -550,23 +562,24 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private async void ExecDeleteMemoryAsync(object obj)
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            Memory memory = (Memory)ProductListView.ProductListUserControl.MemoryList.SelectedItem;
+            Rams.Remove(memory);
+
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
-                        Memory memory = (Memory)ProductListView.ProductListUserControl.MemoryList.SelectedItem;
-                        Rams.Remove(memory);
+                case ConnectionResource.LOCALAPI:
+                    await new WebServiceManager<Memory>().DeleteAsync(memory);
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         ctx.DbSetMemories.Attach(memory);
                         ctx.DbSetMemories.Remove(memory);
                         await ctx.SaveChangesAsync();
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -629,23 +642,24 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private async void ExecDeleteStorageAsync(object obj)
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            Storage storageComponent = (Storage)ProductListView.ProductListUserControl.StorageList.SelectedItem;
+            StorageComponents.Remove(storageComponent);
+
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
-                        Storage storageComponent = (Storage)ProductListView.ProductListUserControl.StorageList.SelectedItem;
-                        StorageComponents.Remove(storageComponent);
+                case ConnectionResource.LOCALAPI:
+                    await new WebServiceManager<Storage>().DeleteAsync(storageComponent);
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         ctx.DbSetStorages.Attach(storageComponent);
                         ctx.DbSetStorages.Remove(storageComponent);
                         await ctx.SaveChangesAsync();
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -708,23 +722,24 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private async void ExecDeletePSUAsync(object obj)
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            PSU psu = (PSU)ProductListView.ProductListUserControl.PSUList.SelectedItem;
+            PSUs.Remove(psu);
+
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
-                        PSU psu = (PSU)ProductListView.ProductListUserControl.PSUList.SelectedItem;
-                        PSUs.Remove(psu);
+                case ConnectionResource.LOCALAPI:
+                    await new WebServiceManager<PSU>().DeleteAsync(psu);
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         ctx.DbSetPSUs.Attach(psu);
                         ctx.DbSetPSUs.Remove(psu);
                         await ctx.SaveChangesAsync();
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -787,23 +802,24 @@ namespace TechStoreWpf.ViewModels
         /// <param name="obj"></param>
         private async void ExecDeleteCaseAsync(object obj)
         {
-            using (var ctx = new MysqlDbContext(App.DataSource))
+            Case pcCase = (Case)ProductListView.ProductListUserControl.CaseList.SelectedItem;
+            Cases.Remove(pcCase);
+
+            switch (App.DataSource)
             {
-                switch (App.DataSource)
-                {
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALAPI:
-                        // Code API
-                        break;
-                    case TechStoreLibrary.Enums.ConnectionResource.LOCALMYSQL:
-                        Case pcCase = (Case)ProductListView.ProductListUserControl.CaseList.SelectedItem;
-                        Cases.Remove(pcCase);
+                case ConnectionResource.LOCALAPI:
+                    await new WebServiceManager<Case>().DeleteAsync(pcCase);
+                    break;
+                case ConnectionResource.LOCALMYSQL:
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
+                    {
                         ctx.DbSetCases.Attach(pcCase);
                         ctx.DbSetCases.Remove(pcCase);
                         await ctx.SaveChangesAsync();
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         #endregion
