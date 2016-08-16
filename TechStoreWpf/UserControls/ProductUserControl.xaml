@@ -39,7 +39,7 @@
         <!-- Product's description -->
         <StackPanel x:Name="DescContainer" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="8" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Label x:Name="ProductDescLbl" Content="Description" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" />
-            <TextBox x:Name="ProductDescTxt" Text="{Binding Description}" Height="Auto" MinHeight="100" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" Padding="5" />
+            <TextBox x:Name="ProductDescTxt" Text="{Binding Description}" AcceptsReturn="True" TextWrapping="Wrap" Height="Auto" MinHeight="100" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" Padding="5" />
         </StackPanel>
 
         <!-- Product's condition -->
@@ -51,11 +51,11 @@
 
         <!-- Product's stock -->
         <Label x:Name="ProductStockLbl" Content="Stock" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
-        <TextBox x:Name="ProductStockTxt" Text="{Binding Stock}" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 0, 10, 0" />
+        <TextBox x:Name="ProductStockTxt" Text="{Binding Stock}" PreviewKeyDown="NoSpace_PreviewKeyDown" PreviewTextInput="OnlyNumbers_PreviewTextInput" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 0, 10, 0" />
 
         <!-- Product's price -->
         <Label x:Name="ProductPriceLbl" Content="Price" Grid.Row="3" Grid.Column="6" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
-        <TextBox x:Name="ProductPriceTxt" Text="{Binding Price}" Grid.Row="3" Grid.Column="7" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 10" />
+        <TextBox x:Name="ProductPriceTxt" Text="{Binding Price}" PreviewKeyDown="NoSpace_PreviewKeyDown" PreviewTextInput="OnlyNumbersPeriods_PreviewTextInput" Grid.Row="3" Grid.Column="7" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 10" />
 
         <StackPanel x:Name="ProductBtns" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="8" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button x:Name="CancelProductBtn" Content="Cancel" Click="CancelProductBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="30, 5" Margin="10, 0, 0, 0" />

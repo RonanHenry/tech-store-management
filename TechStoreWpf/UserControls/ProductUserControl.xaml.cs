@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -130,6 +131,8 @@ namespace TechStoreWpf.UserControls
                     Path = new PropertyPath("CoresAmount")
                 };
                 cpuCoresAmountTextBox.SetBinding(TextBox.TextProperty, cpuCoresAmountBinding);
+                cpuCoresAmountTextBox.PreviewKeyDown += NoSpace_PreviewKeyDown;
+                cpuCoresAmountTextBox.PreviewTextInput += OnlyNumbers_PreviewTextInput;
                 Grid.SetRow(cpuCoresAmountTextBox, 1);
                 Grid.SetColumn(cpuCoresAmountTextBox, 5);
                 ProductGrid.Children.Add(cpuCoresAmountTextBox);
@@ -155,6 +158,8 @@ namespace TechStoreWpf.UserControls
                     Path = new PropertyPath("Frequency")
                 };
                 cpuFrequencyTextBox.SetBinding(TextBox.TextProperty, cpuFrequencyBinding);
+                cpuFrequencyTextBox.PreviewKeyDown += NoSpace_PreviewKeyDown;
+                cpuFrequencyTextBox.PreviewTextInput += OnlyNumbersPeriods_PreviewTextInput;
                 Grid.SetRow(cpuFrequencyTextBox, 1);
                 Grid.SetColumn(cpuFrequencyTextBox, 7);
                 ProductGrid.Children.Add(cpuFrequencyTextBox);
@@ -608,6 +613,8 @@ namespace TechStoreWpf.UserControls
                     Path = new PropertyPath("Latency")
                 };
                 memoryLatencyTextBox.SetBinding(TextBox.TextProperty, memoryLatencyBinding);
+                memoryLatencyTextBox.PreviewKeyDown += NoSpace_PreviewKeyDown;
+                memoryLatencyTextBox.PreviewTextInput += OnlyNumbers_PreviewTextInput;
                 Grid.SetRow(memoryLatencyTextBox, 1);
                 Grid.SetColumn(memoryLatencyTextBox, 7);
                 ProductGrid.Children.Add(memoryLatencyTextBox);
@@ -1121,6 +1128,36 @@ namespace TechStoreWpf.UserControls
         {
             string activeTabName = (string)Utility.FindParent<StackPanel>((Button)sender).Tag;
             Utility.FindParent<Page>(this).NavigationService.Navigate(new ProductListView(activeTabName));
+        }
+
+        /// <summary>
+        /// Disallows spaces to be entered in the field.
+        /// </summary>
+        /// <param name="sender">Element firing the event.</param>
+        /// <param name="e">Data for KeyUp and KeyDown routed events.</param>
+        private void NoSpace_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = e.Key == Key.Space;
+        }
+
+        /// <summary>
+        /// Only allows numbers in the field.
+        /// </summary>
+        /// <param name="sender">Element firing the event.</param>
+        /// <param name="e">Arguments associated with changes to a TextComposition.</param>
+        private void OnlyNumbers_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, @"[0-9]");
+        }
+
+        /// <summary>
+        /// Only allows numbers and periods in the field.
+        /// </summary>
+        /// <param name="sender">Element firing the event.</param>
+        /// <param name="e">Arguments associated with changes to a TextComposition.</param>
+        private void OnlyNumbersPeriods_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, @"[0-9.]");
         }
         #endregion
     }

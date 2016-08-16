@@ -34,7 +34,7 @@
 
         <!-- Customer's money -->
         <Label x:Name="CustomerMoneyLbl" Content="Money" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
-        <TextBox x:Name="CustomerMoneyTxt" Text="{Binding Customer.Money}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 10" />
+        <TextBox x:Name="CustomerMoneyTxt" Text="{Binding Customer.Money}" PreviewKeyDown="NoSpace_PreviewKeyDown" PreviewTextInput="CustomerPriceTxt_PreviewTextInput" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="5" Margin="0, 10" />
 
         <!-- Customer's address -->
         <GroupBox Header="Address" Grid.Row="3" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="2" Padding="10" FontSize="14">
@@ -58,7 +58,7 @@
 
                 <!-- ZIP code -->
                 <Label x:Name="CustomerAddressZipCodeLbl" Content="ZIP code" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                <TextBox x:Name="CustomerAddressZipCodeTxt" Text="{Binding ZipCode}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5" Margin="0, 10" />
+                <TextBox x:Name="CustomerAddressZipCodeTxt" Text="{Binding ZipCode}" PreviewKeyDown="NoSpace_PreviewKeyDown" PreviewTextInput="CustomerAddressZipCodeTxt_PreviewTextInput" MaxLength="5" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5" Margin="0, 10" />
 
                 <!-- City -->
                 <Label x:Name="CustomerAddressCityLbl" Content="City" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
