@@ -60,6 +60,7 @@ namespace TechStoreWpf.Views
         private void LayoutPage_Loaded(object sender, RoutedEventArgs e)
         {
             ProductMenu_Click(sender, e);
+            App.SetConnectionStatus(DataSourceTxt);
         }
 
         /// <summary>

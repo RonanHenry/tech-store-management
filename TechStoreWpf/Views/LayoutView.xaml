@@ -38,7 +38,18 @@
         
         <!-- Status bar at the bottom -->
         <StatusBar DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Padding="3" Background="#FF333333">
-            <TextBlock Name="StatusBarTxt" Text="Ready" Foreground="White" FontSize="14" />
+            
+            <StatusBarItem>
+                <StatusBarItem.Content>
+                    <TextBlock Name="StatusBarTxt" Text="Ready" Grid.Column="0" Foreground="White" FontSize="14" />
+                </StatusBarItem.Content>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <StatusBarItem.Content>
+                    <TextBlock x:Name="DataSourceTxt" Text="Connecting to data source..." Grid.Column="1" Foreground="White" FontSize="14" />
+                </StatusBarItem.Content>
+            </StatusBarItem>
+
         </StatusBar>
         
         <!-- Main grid -->
