@@ -28,6 +28,8 @@ namespace TechStoreLibrary.Database
         public DbSet<Motherboard> DbSetMotherboards { get; set; }
         public DbSet<PSU> DbSetPSUs { get; set; }
         public DbSet<Storage> DbSetStorages { get; set; }
+        public DbSet<CartItem> DbSetCartItems { get; set; }
+        public DbSet<Cart> DbSetCarts { get; set; }
         #endregion
 
         #region Constructors
