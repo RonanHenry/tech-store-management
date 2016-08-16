@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace TechStoreLibrary.Models
     /// <summary>
     /// Defines a Power supply component.
     /// </summary>
+    [Table("psus")]
     public class PSU : Product, IFakerLoader<PSU>
     {
         #region Attributes

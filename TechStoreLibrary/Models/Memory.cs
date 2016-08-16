@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace TechStoreLibrary.Models
     /// <summary>
     /// Defines a Random Access Memory component (RAM).
     /// </summary>
+    [Table("memories")]
     public class Memory : Product, IFakerLoader<Memory>
     {
         #region Attributes

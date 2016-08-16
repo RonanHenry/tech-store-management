@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using TechStoreLibrary.FakerLoader;
 using TechStoreLibrary.DataDefinitions;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TechStoreLibrary.Models
 {
     /// <summary>
     /// Defines a PC case.
     /// </summary>
+    [Table("cases")]
     public class Case : Product, IFakerLoader<Case>
     {
         #region Attributes
