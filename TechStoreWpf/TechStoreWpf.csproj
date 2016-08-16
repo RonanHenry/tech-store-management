@@ -70,6 +70,9 @@
     <Compile Include="Helpers\BoolToStringConverter.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\Utility.cs" />
+    <Compile Include="UserControls\CartUserControl.xaml.cs">
+      <DependentUpon>CartUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\CustomerListUserControl.xaml.cs">
       <DependentUpon>CustomerListUserControl.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,7 @@
       <DependentUpon>WorkerUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\CustomerListViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\LayoutViewModel.cs" />
@@ -96,6 +100,9 @@
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\WorkerListViewModel.cs" />
     <Compile Include="ViewModels\WorkerViewModel.cs" />
+    <Compile Include="Views\CartView.xaml.cs">
+      <DependentUpon>CartView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomerListView.xaml.cs">
       <DependentUpon>CustomerListView.xaml</DependentUpon>
     </Compile>
@@ -129,6 +136,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\CartUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\CustomerListUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -150,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\WorkerUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

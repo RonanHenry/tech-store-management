@@ -21,7 +21,7 @@
             <!-- CPU products -->
             <TabItem Header="CPU">
 
-                <Grid Margin="10">
+                <Grid x:Name="CPUGrid" Margin="10">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -33,10 +33,10 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Title -->
-                    <TextBlock Text="Central Processing Units (CPU)" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
+                    <TextBlock x:Name="CPUTitle" Text="Central Processing Units (CPU)" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
 
                     <!-- Buttons -->
-                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <StackPanel x:Name="CPUBtns" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
                         <Button x:Name="AddCPU" Content="Add" Command="{Binding AddCPUCommand}" MouseEnter="AddCPU_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="EditCPU" Content="Edit" Command="{Binding EditCPUCommand}" MouseEnter="EditCPU_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="DeleteCPU" Content="Delete" Command="{Binding DeleteCPUCommand}" MouseEnter="DeleteCPU_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
@@ -65,7 +65,7 @@
             <!-- GPU products -->
             <TabItem Header="GPU">
 
-                <Grid Margin="10">
+                <Grid x:Name="GPUGrid" Margin="10">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -77,10 +77,10 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Title -->
-                    <TextBlock Text="Graphics cards (GPU)" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
+                    <TextBlock x:Name="GPUTitle" Text="Graphics cards (GPU)" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
 
                     <!-- Buttons -->
-                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <StackPanel x:Name="GPUBtns" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
                         <Button x:Name="AddGPU" Content="Add" Command="{Binding AddGPUCommand}" MouseEnter="AddGPU_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="EditGPU" Content="Edit" Command="{Binding EditGPUCommand}" MouseEnter="EditGPU_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="DeleteGPU" Content="Delete" Command="{Binding DeleteGPUCommand}" MouseEnter="DeleteGPU_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
@@ -109,7 +109,7 @@
             <!-- Motherboard products -->
             <TabItem Header="Motherboard">
 
-                <Grid Margin="10">
+                <Grid x:Name="MotherboardGrid" Margin="10">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -121,10 +121,10 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Title -->
-                    <TextBlock Text="Motherboards" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
+                    <TextBlock x:Name="MotherboardTitle" Text="Motherboards" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
 
                     <!-- Buttons -->
-                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <StackPanel x:Name="MotherboardBtns" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
                         <Button x:Name="AddMotherboard" Content="Add" Command="{Binding AddMotherboardCommand}" MouseEnter="AddMotherboard_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="EditMotherboard" Content="Edit" Command="{Binding EditMotherboardCommand}" MouseEnter="EditMotherboard_MouseEnter"  MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="DeleteMotherboard" Content="Delete" Command="{Binding DeleteMotherboardCommand}" MouseEnter="DeleteMotherboard_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
@@ -154,7 +154,7 @@
             <!-- Memory products -->
             <TabItem Header="Memory">
 
-                <Grid Margin="10">
+                <Grid x:Name="MemoryGrid" Margin="10">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -166,10 +166,10 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Title -->
-                    <TextBlock Text="Random Access Memory (RAM)" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
+                    <TextBlock x:Name="MemoryTitle" Text="Random Access Memory (RAM)" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
 
                     <!-- Buttons -->
-                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <StackPanel x:Name="MemoryBtns" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
                         <Button x:Name="AddMemory" Content="Add" Command="{Binding AddMemoryCommand}" MouseEnter="AddMemory_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="EditMemory" Content="Edit" Command="{Binding EditMemoryCommand}" MouseEnter="EditMemory_MouseEnter"  MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="DeleteMemory" Content="Delete" Command="{Binding DeleteMemoryCommand}" MouseEnter="DeleteMemory_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
@@ -199,7 +199,7 @@
             <!-- Storage products -->
             <TabItem Header="Storage">
 
-                <Grid Margin="10">
+                <Grid x:Name="StorageGrid" Margin="10">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -211,10 +211,10 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Title -->
-                    <TextBlock Text="Storage" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
+                    <TextBlock x:Name="StorageTitle" Text="Storage" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
 
                     <!-- Buttons -->
-                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <StackPanel x:Name="StorageBtns" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
                         <Button x:Name="AddStorage" Content="Add" Command="{Binding AddStorageCommand}" MouseEnter="AddStorage_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="EditStorage" Content="Edit" Command="{Binding EditStorageCommand}" MouseEnter="EditStorage_MouseEnter"  MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="DeleteStorage" Content="Delete" Command="{Binding DeleteStorageCommand}" MouseEnter="DeleteStorage_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
@@ -243,7 +243,7 @@
             <!-- Power supply products -->
             <TabItem Header="PSU">
 
-                <Grid Margin="10">
+                <Grid x:Name="PSUGrid" Margin="10">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -255,10 +255,10 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Title -->
-                    <TextBlock Text="Power supplies" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
+                    <TextBlock x:Name="PSUTitle" Text="Power supplies" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
 
                     <!-- Buttons -->
-                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <StackPanel x:Name="PSUBtns" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
                         <Button x:Name="AddPSU" Content="Add" Command="{Binding AddPSUCommand}" MouseEnter="AddPSU_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="EditPSU" Content="Edit" Command="{Binding EditPSUCommand}" MouseEnter="EditPSU_MouseEnter"  MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="DeletePSU" Content="Delete" Command="{Binding DeletePSUCommand}" MouseEnter="DeletePSU_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
@@ -287,7 +287,7 @@
             <!-- Case products -->
             <TabItem Header="Case">
 
-                <Grid Margin="10">
+                <Grid x:Name="CaseGrid" Margin="10">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -299,10 +299,10 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Title -->
-                    <TextBlock Text="Cases" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
+                    <TextBlock x:Name="CaseTitle" Text="Cases" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" />
 
                     <!-- Buttons -->
-                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <StackPanel x:Name="CaseBtns" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
                         <Button x:Name="AddCase" Content="Add" Command="{Binding AddCaseCommand}" MouseEnter="AddCase_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="EditCase" Content="Edit" Command="{Binding EditCaseCommand}" MouseEnter="EditCase_MouseEnter"  MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />
                         <Button x:Name="DeleteCase" Content="Delete" Command="{Binding DeleteCaseCommand}" MouseEnter="DeleteCase_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="30, 5" Margin="10, 0, 0, 0" />

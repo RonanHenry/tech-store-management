@@ -12,51 +12,44 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TechStoreLibrary.Models;
 using TechStoreWpf.Helpers;
 using TechStoreWpf.ViewModels;
 
 namespace TechStoreWpf.Views
 {
     /// <summary>
-    /// Interaction logic for WorkerView.xaml
+    /// Interaction logic for CartView.xaml
     /// </summary>
-    public partial class WorkerView : Page
+    public partial class CartView : Page
     {
         #region Attributes
-        private WorkerViewModel workerViewModel;
+        private CartViewModel cartViewModel;
         #endregion
 
         #region Properties
         /// <summary>
         /// ViewModel of the view.
         /// </summary>
-        public WorkerViewModel WorkerViewModel
+        public CartViewModel CartViewModel
         {
             get
             {
-                return workerViewModel;
+                return cartViewModel;
             }
             set
             {
-                workerViewModel = value;
+                cartViewModel = value;
             }
         }
         #endregion
 
         #region Constructors
-        public WorkerView()
+        public CartView()
         {
             InitializeComponent();
 
-            WorkerViewModel = new WorkerViewModel(this);
-            DataContext = WorkerViewModel;
-        }
-
-        public WorkerView(Worker worker)
-            : this()
-        {
-            WorkerViewModel.Worker = worker;
+            CartViewModel = new CartViewModel(this);
+            DataContext = CartViewModel;
         }
         #endregion
 
@@ -64,10 +57,10 @@ namespace TechStoreWpf.Views
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             LayoutView layoutView = (LayoutView)Utility.FindParent<Page>(this, "LayoutPage");
-            layoutView.CustomerMenu.Background = (Brush)layoutView.BrushConverter.ConvertFrom("#FF333333");
+            layoutView.StaffMenu.Background = (Brush)layoutView.BrushConverter.ConvertFrom("#FF333333");
             layoutView.ProductMenu.Background = (Brush)layoutView.BrushConverter.ConvertFrom("#FF333333");
-            layoutView.CartMenu.Background = (Brush)layoutView.BrushConverter.ConvertFrom("#FF333333");
-            layoutView.StaffMenu.Background = (Brush)layoutView.BrushConverter.ConvertFrom("#FF565656");
+            layoutView.CustomerMenu.Background = (Brush)layoutView.BrushConverter.ConvertFrom("#FF333333");
+            layoutView.CartMenu.Background = (Brush)layoutView.BrushConverter.ConvertFrom("#FF565656");
         }
         #endregion
     }

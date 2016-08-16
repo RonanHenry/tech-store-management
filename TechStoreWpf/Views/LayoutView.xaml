@@ -28,6 +28,7 @@
                         <MenuItem Name="AddPSU" Header="Power supply" Foreground="#FF333333" Command="{Binding AddPSUCommand}"  MouseEnter="AddPSU_MouseEnter" MouseLeave="Control_MouseLeave" />
                         <MenuItem Name="AddCase" Header="Case" Foreground="#FF333333" Command="{Binding AddCaseCommand}" MouseEnter="AddCase_MouseEnter" MouseLeave="Control_MouseLeave" />
                     </MenuItem>
+                    <MenuItem Name="AddCart" Header="Shopping Cart" Foreground="#FF333333" MouseEnter="AddCart_MouseEnter" MouseLeave="Control_MouseLeave" />
                 </MenuItem>
                 <MenuItem Name="AppExit" Header="Exit" Foreground="#FF333333" Click="AppExit_Click" MouseEnter="AppExit_MouseEnter" MouseLeave="Control_MouseLeave" />
             </MenuItem>
@@ -56,7 +57,7 @@
         <Grid DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MinWidth="120" MaxWidth="200" />
+                <ColumnDefinition Width="*" MinWidth="135" MaxWidth="200" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
@@ -71,6 +72,7 @@
                 <MenuItem x:Name="StaffMenu" Header="Employees" Foreground="White" Padding="15, 10" Cursor="Hand" BorderThickness="0" Click="StaffMenu_Click" Background="#FF565656" />
                 <MenuItem x:Name="CustomerMenu" Header="Customers" Foreground="White" Padding="15, 10" Cursor="Hand" BorderThickness="0" Click="CustomerMenu_Click" />
                 <MenuItem x:Name="ProductMenu" Header="Products" Foreground="White" Padding="15, 10" Cursor="Hand" BorderThickness="0" Click="ProductMenu_Click" />
+                <MenuItem x:Name="CartMenu" Header="Shopping Cart" Foreground="White" Padding="15, 10" Cursor="Hand" BorderThickness="0" Click="CartMenu_Click" />
             </Menu>
 
             <!-- Splitter -->

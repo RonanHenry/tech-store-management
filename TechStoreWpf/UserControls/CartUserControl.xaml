@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="TechStoreWpf.UserControls.CartUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TechStoreWpf.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Loaded="UserControl_Loaded">
+    
+    <Grid x:Name="CartGrid">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Products list UserControl -->
+        <local:ProductListUserControl x:Name="ProductsUC" Grid.Row="0" Grid.Column="0" />
+        
+        <!-- Cart buttons -->
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="CartAddProduct" Content="Add product &gt;" MouseEnter="CartAddProduct_MouseEnter" MouseLeave="Control_MouseLeave" Padding="30, 5" Margin="0, 0, 10, 5" />
+            <Button x:Name="CartRemoveProduct" Content="&lt; Remove product" MouseEnter="CartRemoveProduct_MouseEnter" MouseLeave="Control_MouseLeave" Padding="30, 5" Margin="0, 5, 10, 0" />
+        </StackPanel>
+
+        <!-- Cart items -->
+        <ListView Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0, 33, 10, 10"  FontSize="14">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Brand" />
+                    <GridViewColumn Header="Name" />
+                    <GridViewColumn Header="Quantity" />
+                    <GridViewColumn Header="Price" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Customer selection -->
+        <Grid Grid.Row="1" Grid.Column="0" Margin="10, 0, 10, 10">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Customer" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" />
+            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="6" Margin="0, 0, 10, 0">
+                <ComboBoxItem Content="Item 1" />
+                <ComboBoxItem Content="Item 2" />
+                <ComboBoxItem Content="Item 3" />
+            </ComboBox>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Label Content="Money :" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
+                <TextBlock Text="0 €" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
+            </StackPanel>
+
+        </Grid>
+
+        <!-- Validate button -->
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10, 0, 10, 10">
+            <Button x:Name="CartValidate" Content="Proceed" MouseEnter="CartValidate_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="30, 5" />
+        </StackPanel>
+        
+    </Grid>
+    
+</UserControl>

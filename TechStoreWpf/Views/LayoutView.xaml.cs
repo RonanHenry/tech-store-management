@@ -72,6 +72,7 @@ namespace TechStoreWpf.Views
         {
             CustomerMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
             ProductMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
+            CartMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
             StaffMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF565656");
             ContentFrame.NavigationService.Navigate(new WorkerListView());
         }
@@ -85,6 +86,7 @@ namespace TechStoreWpf.Views
         {
             StaffMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
             ProductMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
+            CartMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
             CustomerMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF565656");
             ContentFrame.NavigationService.Navigate(new CustomerListView());
         }
@@ -98,8 +100,23 @@ namespace TechStoreWpf.Views
         {
             StaffMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
             CustomerMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
+            CartMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
             ProductMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF565656");
             ContentFrame.NavigationService.Navigate(new ProductListView());
+        }
+
+        /// <summary>
+        /// Loads the cart view in the frame.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CartMenu_Click(object sender, RoutedEventArgs e)
+        {
+            StaffMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
+            CustomerMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
+            ProductMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF333333");
+            CartMenu.Background = (Brush)BrushConverter.ConvertFrom("#FF565656");
+            ContentFrame.NavigationService.Navigate(new CartView());
         }
 
         private void Control_MouseLeave(object sender, MouseEventArgs e)
@@ -150,6 +167,11 @@ namespace TechStoreWpf.Views
         private void AddCase_MouseEnter(object sender, MouseEventArgs e)
         {
             StatusBarTxt.Text = "Add a case";
+        }
+
+        private void AddCart_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBarTxt.Text = "New shopping cart";
         }
 
         private void AppAbout_MouseEnter(object sender, MouseEventArgs e)
