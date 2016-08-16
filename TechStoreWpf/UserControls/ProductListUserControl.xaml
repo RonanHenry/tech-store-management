@@ -49,7 +49,7 @@
                             <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Socket" Binding="{Binding SocketType}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
-                            <DataGridTextColumn Header="Number of cores" Binding="{Binding CoresAmount}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
+                            <DataGridTextColumn Header="Cores" Binding="{Binding CoresAmount}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Clock speed (GHz)" Binding="{Binding Frequency}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Condition" Binding="{Binding Condition}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
                             <DataGridTextColumn Header="Description" Binding="{Binding Description}" ElementStyle="{StaticResource DatagridColumnElementStyle}" />
