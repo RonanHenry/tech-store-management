@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +25,7 @@ namespace TechStoreWpf.UserControls
     {
         #region Attributes
         private TextBlock statusBar;
+        private TabItem lastSelectedTabItem;
         #endregion
 
         #region Properties
@@ -41,6 +43,21 @@ namespace TechStoreWpf.UserControls
                 statusBar = value;
             }
         }
+
+        /// <summary>
+        /// Last active tab.
+        /// </summary>
+        public TabItem LastSelectedTabItem
+        {
+            get
+            {
+                return lastSelectedTabItem;
+            }
+            set
+            {
+                lastSelectedTabItem = value;
+            }
+        }
         #endregion
 
         #region Constructors
@@ -55,6 +72,7 @@ namespace TechStoreWpf.UserControls
         {
             LayoutView layoutView = (LayoutView)Utility.FindParent<Page>(this, "LayoutPage");
             StatusBar = layoutView.StatusBarTxt;
+            LastSelectedTabItem = (TabItem)ProductList.SelectedItem;
         }
 
         private void Control_MouseLeave(object sender, MouseEventArgs e)
@@ -165,6 +183,29 @@ namespace TechStoreWpf.UserControls
         private void DeleteCase_MouseEnter(object sender, MouseEventArgs e)
         {
             StatusBar.Text = "Delete selected case";
+        }
+
+        /// <summary>
+        /// Clears datagrid selection when changing tab.
+        /// </summary>
+        /// <param name="sender">TabControl object triggering the event.</param>
+        /// <param name="e">Additional event data.</param>
+        private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.OriginalSource.GetType() == typeof(TabControl))
+            {
+                string tabHeader = LastSelectedTabItem != null ? (string)LastSelectedTabItem.Header : null;
+
+                if (!string.IsNullOrEmpty(tabHeader))
+                {
+                    DataGrid dataGrid = LastSelectedTabItem.FindName(string.Format("{0}List", tabHeader)) as DataGrid;
+
+                    if (dataGrid != null)
+                        dataGrid.UnselectAll();
+                }
+
+                LastSelectedTabItem = (e.OriginalSource as TabControl).SelectedItem as TabItem;
+            }
         }
         #endregion
     }

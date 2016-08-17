@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TechStoreWpf.UserControls"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              Loaded="UserControl_Loaded">
@@ -25,18 +26,22 @@
         
         <!-- Cart buttons -->
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="CartAddProduct" Content="Add product &gt;" MouseEnter="CartAddProduct_MouseEnter" MouseLeave="Control_MouseLeave" Padding="30, 5" Margin="0, 0, 10, 5" />
-            <Button x:Name="CartRemoveProduct" Content="&lt; Remove product" MouseEnter="CartRemoveProduct_MouseEnter" MouseLeave="Control_MouseLeave" Padding="30, 5" Margin="0, 5, 10, 0" />
+            <Button x:Name="CartAddProduct" Content="Add product &gt;" Command="{Binding AddToCartCommand}" MouseEnter="CartAddProduct_MouseEnter" MouseLeave="Control_MouseLeave" Padding="30, 5" Margin="0, 0, 10, 5" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="CartUpQuantity" Content="-" Command="{Binding DownQuantityCommand}" MouseEnter="CartDownQuantity_MouseEnter" MouseLeave="Control_MouseLeave" FontSize="20" FontWeight="Bold" Padding="30, 5" Margin="0, 5, 10, 5" />
+                <Button x:Name="CartDownQuantity" Content="+" Command="{Binding UpQuantityCommand}" MouseEnter="CartUpQuantity_MouseEnter" MouseLeave="Control_MouseLeave" FontSize="20" FontWeight="Bold" Padding="30, 5" Margin="0, 5, 10, 5" />
+            </StackPanel>
+            <Button x:Name="CartRemoveProduct" Content="&lt; Remove product" Command="{Binding RemoveFromCartCommand}" MouseEnter="CartRemoveProduct_MouseEnter" MouseLeave="Control_MouseLeave" Padding="30, 5" Margin="0, 5, 10, 0" />
         </StackPanel>
 
         <!-- Cart items -->
-        <ListView Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0, 33, 10, 10"  FontSize="14">
+        <ListView x:Name="Cart" ItemsSource="{Binding Cart.Items}" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0, 33, 10, 10"  FontSize="14">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Brand" />
-                    <GridViewColumn Header="Name" />
-                    <GridViewColumn Header="Quantity" />
-                    <GridViewColumn Header="Price" />
+                    <GridViewColumn Header="Brand" DisplayMemberBinding="{Binding Product.Brand}" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Product.Name}" />
+                    <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding Quantity}" />
+                    <GridViewColumn Header="Price (€)" DisplayMemberBinding="{Binding Price}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -46,28 +51,58 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Label Content="Customer" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" />
-            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="6" Margin="0, 0, 10, 0">
-                <ComboBoxItem Content="Item 1" />
-                <ComboBoxItem Content="Item 2" />
-                <ComboBoxItem Content="Item 3" />
+            <ComboBox x:Name="CartCustomer" ItemsSource="{Binding Customers}" SelectedItem="{Binding Cart.Customer}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" Padding="6" Margin="0, 0, 10, 0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1} ({2} {3} - {4})">
+                                    <Binding Path="FirstName" />
+                                    <Binding Path="LastName" />
+                                    <Binding Path="Address.ZipCode" />
+                                    <Binding Path="Address.City" />
+                                    <Binding Path="Address.Country" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding CustomerSelectionChangedCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </ComboBox>
             <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <Label Content="Money :" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
-                <TextBlock Text="0 €" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
+                <TextBlock Text="{Binding Cart.Customer.Money, StringFormat={}{0} €, FallbackValue=0 €}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" />
             </StackPanel>
 
         </Grid>
 
-        <!-- Validate button -->
-        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10, 0, 10, 10">
-            <Button x:Name="CartValidate" Content="Proceed" MouseEnter="CartValidate_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="30, 5" />
-        </StackPanel>
-        
+        <!-- Validation -->
+        <Grid Grid.Row="1" Grid.Column="2" Margin="-5, 0, 10, 10">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Label Content="Total :" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" />
+                <TextBlock Text="{Binding Cart.Total, StringFormat={}{0} €}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button x:Name="CartValidate" Content="Pay" Command="{Binding ProceedToPaymentCommand}" MouseEnter="CartValidate_MouseEnter" MouseLeave="Control_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="30, 5" />
+            </StackPanel>
+
+        </Grid>
+
     </Grid>
     
 </UserControl>

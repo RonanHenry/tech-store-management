@@ -42,6 +42,7 @@ namespace TechStoreWpf.ViewModels
         public ICommand AddStorageCommand { get; private set; }
         public ICommand AddPSUCommand { get; private set; }
         public ICommand AddCaseCommand { get; private set; }
+        public ICommand NewCartCommand { get; private set; }
         #endregion
 
         #region Constructors
@@ -58,6 +59,7 @@ namespace TechStoreWpf.ViewModels
             AddStorageCommand = new RelayCommand(ExecAddStorage, CanAdd);
             AddPSUCommand = new RelayCommand(ExecAddPSU, CanAdd);
             AddCaseCommand = new RelayCommand(ExecAddCase, CanAdd);
+            NewCartCommand = new RelayCommand(ExecNewCart, CanAdd);
         }
         #endregion
 
@@ -110,6 +112,11 @@ namespace TechStoreWpf.ViewModels
         private void ExecAddCase(object obj)
         {
             LayoutView.ContentFrame.NavigationService.Navigate(new ProductView(new Case()));
+        }
+
+        private void ExecNewCart(object obj)
+        {
+            LayoutView.ContentFrame.NavigationService.Navigate(new CartView());
         }
         #endregion
     }

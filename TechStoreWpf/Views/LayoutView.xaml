@@ -28,7 +28,7 @@
                         <MenuItem Name="AddPSU" Header="Power supply" Foreground="#FF333333" Command="{Binding AddPSUCommand}"  MouseEnter="AddPSU_MouseEnter" MouseLeave="Control_MouseLeave" />
                         <MenuItem Name="AddCase" Header="Case" Foreground="#FF333333" Command="{Binding AddCaseCommand}" MouseEnter="AddCase_MouseEnter" MouseLeave="Control_MouseLeave" />
                     </MenuItem>
-                    <MenuItem Name="AddCart" Header="Shopping Cart" Foreground="#FF333333" MouseEnter="AddCart_MouseEnter" MouseLeave="Control_MouseLeave" />
+                    <MenuItem Name="AddCart" Header="Shopping Cart" Foreground="#FF333333" Command="{Binding NewCartCommand}" MouseEnter="AddCart_MouseEnter" MouseLeave="Control_MouseLeave" />
                 </MenuItem>
                 <MenuItem Name="AppExit" Header="Exit" Foreground="#FF333333" Click="AppExit_Click" MouseEnter="AppExit_MouseEnter" MouseLeave="Control_MouseLeave" />
             </MenuItem>

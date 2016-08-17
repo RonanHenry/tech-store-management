@@ -25,7 +25,7 @@ namespace TechStoreWeb.Controllers
         [Route("api/customers")]
         public async Task<IEnumerable<Customer>> GetAllAsync()
         {
-            return await DataResource.DbSetCustomers.Include(w => w.Address).ToListAsync();
+            return await DataResource.DbSetCustomers.Include(c => c.Address).ToListAsync();
         }
 
         /// <summary>

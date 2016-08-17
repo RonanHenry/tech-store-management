@@ -16,9 +16,9 @@ namespace TechStoreWpf.Helpers
     public static class Utility
     {
         /// <summary>
-        /// Finds the parent object with a specific type and an optional name of a child element.
+        /// Finds the parent object with a specific type and an optional name from a child element.
         /// </summary>
-        /// <typeparam name="T">Type of the parent.</typeparam>
+        /// <typeparam name="T">Type of the parent to find.</typeparam>
         /// <param name="child">Child element from which to retrieve the parent.</param>
         /// <param name="parentName">Name of the parent element.</param>
         /// <returns></returns>
@@ -37,7 +37,6 @@ namespace TechStoreWpf.Helpers
                 if (parent != null)
                 {
                     var frameworkElement = parent as FrameworkElement;
-
                     if (frameworkElement != null && frameworkElement.Name == parentName)
                     {
                         return parent;

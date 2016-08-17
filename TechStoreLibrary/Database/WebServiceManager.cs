@@ -46,10 +46,14 @@ namespace TechStoreLibrary.Database
         /// Sends a request to the web API to get all items.
         /// </summary>
         /// <returns>The list of items</returns>
-        public async Task<List<T>> GetAllAsync()
+        public async Task<List<T>> GetAllAsync(bool onlyInStock = false)
         {
             List<T> items = new List<T>();
             string url = string.Format("api/{0}s", typeof(T).Name.ToLower());
+
+            if (onlyInStock)
+                url = string.Format("{0}?stock=1", url);
+
             return await HttpClientCallerAsync<List<T>>(url, items);
         }
 

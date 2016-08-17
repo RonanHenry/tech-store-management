@@ -54,7 +54,7 @@ namespace TechStoreWpf.Views
         public ProductListView(string activeTab)
             : this()
         {
-            TabControl productsTabControl = ProductListViewModel.ProductListView.ProductListUserControl.Products;
+            TabControl productsTabControl = ProductListViewModel.ProductListView.ProductListUserControl.ProductList;
             foreach (TabItem tab in productsTabControl.Items)
             {
                 if ((string)tab.Header == activeTab)

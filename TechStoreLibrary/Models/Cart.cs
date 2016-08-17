@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace TechStoreLibrary.Models
         #region Attributes
         private int id;
         private Customer customer;
-        private List<CartItem> items;
+        private ObservableCollection<CartItem> items;
         private decimal total;
         #endregion
 
@@ -62,7 +63,7 @@ namespace TechStoreLibrary.Models
         /// <summary>
         /// Cart's list of products.
         /// </summary>
-        public virtual List<CartItem> Items
+        public virtual ObservableCollection<CartItem> Items
         {
             get
             {
@@ -102,7 +103,7 @@ namespace TechStoreLibrary.Models
             Customer = customer;
         }
 
-        public Cart(Customer customer, List<CartItem> items)
+        public Cart(Customer customer, ObservableCollection<CartItem> items)
             : this(customer)
         {
             Items = items;

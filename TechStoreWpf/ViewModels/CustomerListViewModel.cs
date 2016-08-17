@@ -86,7 +86,7 @@ namespace TechStoreWpf.ViewModels
                     Customers = new ObservableCollection<Customer>(await new WebServiceManager<Customer>().GetAllAsync());
                     break;
                 case ConnectionResource.LOCALMYSQL:
-                    using (var ctx = new MysqlDbContext(App.DataSource))
+                    using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
                     {
                         Customers = new ObservableCollection<Customer>(await ctx.DbSetCustomers.Include(c => c.Address).ToListAsync());
                     }

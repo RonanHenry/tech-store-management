@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using TechStoreLibrary.Models;
 using TechStoreWeb.Controllers.Base;
@@ -25,7 +26,14 @@ namespace TechStoreWeb.Controllers
         [Route("api/cpus")]
         public async Task<IEnumerable<CPU>> GetAllCPUsAsync()
         {
-            return await DataResource.DbSetCPUs.ToListAsync();
+            if (HttpContext.Current.Request.QueryString["stock"] != null)
+            {
+                return await DataResource.DbSetCPUs.Where(cpu => cpu.Stock > 0).ToListAsync();
+            }
+            else
+            {
+                return await DataResource.DbSetCPUs.ToListAsync();
+            }
         }
 
         /// <summary>
@@ -90,7 +98,15 @@ namespace TechStoreWeb.Controllers
         [Route("api/gpus")]
         public async Task<IEnumerable<GPU>> GetAllGPUsAsync()
         {
-            return await DataResource.DbSetGPUs.ToListAsync();
+            if (HttpContext.Current.Request.QueryString["stock"] != null)
+            {
+                return await DataResource.DbSetGPUs.Where(gpu => gpu.Stock > 0).ToListAsync();
+            }
+            else
+            {
+                return await DataResource.DbSetGPUs.ToListAsync();
+            }
+            
         }
 
         /// <summary>
@@ -155,7 +171,15 @@ namespace TechStoreWeb.Controllers
         [Route("api/motherboards")]
         public async Task<IEnumerable<Motherboard>> GetAllMotherboardsAsync()
         {
-            return await DataResource.DbSetMotherboards.ToListAsync();
+            if (HttpContext.Current.Request.QueryString["stock"] != null)
+            {
+                return await DataResource.DbSetMotherboards.Where(mb => mb.Stock > 0).ToListAsync();
+            }
+            else
+            {
+                return await DataResource.DbSetMotherboards.ToListAsync();
+            }
+            
         }
 
         /// <summary>
@@ -220,7 +244,15 @@ namespace TechStoreWeb.Controllers
         [Route("api/memorys")]
         public async Task<IEnumerable<Memory>> GetAllMemoriesAsync()
         {
-            return await DataResource.DbSetMemories.ToListAsync();
+            if (HttpContext.Current.Request.QueryString["stock"] != null)
+            {
+                return await DataResource.DbSetMemories.Where(ram => ram.Stock > 0).ToListAsync();
+            }
+            else
+            {
+                return await DataResource.DbSetMemories.ToListAsync();
+            }
+            
         }
 
         /// <summary>
@@ -285,7 +317,15 @@ namespace TechStoreWeb.Controllers
         [Route("api/storages")]
         public async Task<IEnumerable<Storage>> GetAllStoragesAsync()
         {
-            return await DataResource.DbSetStorages.ToListAsync();
+            if (HttpContext.Current.Request.QueryString["stock"] != null)
+            {
+                return await DataResource.DbSetStorages.Where(storage => storage.Stock > 0).ToListAsync();
+            }
+            else
+            {
+                return await DataResource.DbSetStorages.ToListAsync();
+            }
+
         }
 
         /// <summary>
@@ -350,7 +390,14 @@ namespace TechStoreWeb.Controllers
         [Route("api/psus")]
         public async Task<IEnumerable<PSU>> GetAllPSUsAsync()
         {
-            return await DataResource.DbSetPSUs.ToListAsync();
+            if (HttpContext.Current.Request.QueryString["stock"] != null)
+            {
+                return await DataResource.DbSetPSUs.Where(psu => psu.Stock > 0).ToListAsync();
+            }
+            else
+            {
+                return await DataResource.DbSetPSUs.ToListAsync();
+            }
         }
 
         /// <summary>
@@ -415,7 +462,15 @@ namespace TechStoreWeb.Controllers
         [Route("api/cases")]
         public async Task<IEnumerable<Case>> GetAllCasesAsync()
         {
-            return await DataResource.DbSetCases.ToListAsync();
+            if (HttpContext.Current.Request.QueryString["stock"] != null)
+            {
+                return await DataResource.DbSetCases.Where(pcCase => pcCase.Stock > 0).ToListAsync();
+            }
+            else
+            {
+                return await DataResource.DbSetCases.ToListAsync();
+            }
+            
         }
 
         /// <summary>

@@ -72,6 +72,16 @@ namespace TechStoreWpf.UserControls
             StatusBar.Text = "Remove selected product from cart";
         }
 
+        private void CartUpQuantity_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Increase quantity of selected product";
+        }
+
+        private void CartDownQuantity_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StatusBar.Text = "Decrease quantity of selected product";
+        }
+
         private void CartValidate_MouseEnter(object sender, MouseEventArgs e)
         {
             StatusBar.Text = "Proceed to payment";

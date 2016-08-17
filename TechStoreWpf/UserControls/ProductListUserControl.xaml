@@ -16,7 +16,7 @@
     <Grid Margin="10">
 
         <!-- Product categories -->
-        <TabControl x:Name="Products" FontSize="14">
+        <TabControl x:Name="ProductList" SelectionChanged="ProductList_SelectionChanged" FontSize="14">
 
             <!-- CPU products -->
             <TabItem Header="CPU">

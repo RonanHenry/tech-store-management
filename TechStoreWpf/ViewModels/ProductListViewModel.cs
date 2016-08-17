@@ -186,6 +186,10 @@ namespace TechStoreWpf.ViewModels
         #endregion
 
         #region Constructors
+        public ProductListViewModel()
+        {
+        }
+
         public ProductListViewModel(ProductListView productListView)
         {
             ProductListView = productListView;
@@ -226,31 +230,57 @@ namespace TechStoreWpf.ViewModels
         /// <summary>
         /// Loads all products.
         /// </summary>
-        public async void LoadProductsAsync()
+        public async void LoadProductsAsync(bool inStockOnly = false)
         {
             App.SetConnectionResource();
 
             switch (App.DataSource)
             {
                 case ConnectionResource.LOCALAPI:
-                    CPUs = new ObservableCollection<CPU>(await new WebServiceManager<CPU>().GetAllAsync());
-                    GPUs = new ObservableCollection<GPU>(await new WebServiceManager<GPU>().GetAllAsync());
-                    Motherboards = new ObservableCollection<Motherboard>(await new WebServiceManager<Motherboard>().GetAllAsync());
-                    Rams = new ObservableCollection<Memory>(await new WebServiceManager<Memory>().GetAllAsync());
-                    StorageComponents = new ObservableCollection<Storage>(await new WebServiceManager<Storage>().GetAllAsync());
-                    PSUs = new ObservableCollection<PSU>(await new WebServiceManager<PSU>().GetAllAsync());
-                    Cases = new ObservableCollection<Case>(await new WebServiceManager<Case>().GetAllAsync());
+                    if (inStockOnly)
+                    {
+                        CPUs = new ObservableCollection<CPU>(await new WebServiceManager<CPU>().GetAllAsync(true));
+                        GPUs = new ObservableCollection<GPU>(await new WebServiceManager<GPU>().GetAllAsync(true));
+                        Motherboards = new ObservableCollection<Motherboard>(await new WebServiceManager<Motherboard>().GetAllAsync(true));
+                        Rams = new ObservableCollection<Memory>(await new WebServiceManager<Memory>().GetAllAsync(true));
+                        StorageComponents = new ObservableCollection<Storage>(await new WebServiceManager<Storage>().GetAllAsync(true));
+                        PSUs = new ObservableCollection<PSU>(await new WebServiceManager<PSU>().GetAllAsync(true));
+                        Cases = new ObservableCollection<Case>(await new WebServiceManager<Case>().GetAllAsync(true));
+                    }
+                    else
+                    {
+                        CPUs = new ObservableCollection<CPU>(await new WebServiceManager<CPU>().GetAllAsync());
+                        GPUs = new ObservableCollection<GPU>(await new WebServiceManager<GPU>().GetAllAsync());
+                        Motherboards = new ObservableCollection<Motherboard>(await new WebServiceManager<Motherboard>().GetAllAsync());
+                        Rams = new ObservableCollection<Memory>(await new WebServiceManager<Memory>().GetAllAsync());
+                        StorageComponents = new ObservableCollection<Storage>(await new WebServiceManager<Storage>().GetAllAsync());
+                        PSUs = new ObservableCollection<PSU>(await new WebServiceManager<PSU>().GetAllAsync());
+                        Cases = new ObservableCollection<Case>(await new WebServiceManager<Case>().GetAllAsync());
+                    }
                     break;
                 case ConnectionResource.LOCALMYSQL:
                     using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
                     {
-                        CPUs = new ObservableCollection<CPU>(await ctx.DbSetCPUs.ToListAsync());
-                        GPUs = new ObservableCollection<GPU>(await ctx.DbSetGPUs.ToListAsync());
-                        Motherboards = new ObservableCollection<Motherboard>(await ctx.DbSetMotherboards.ToListAsync());
-                        Rams = new ObservableCollection<Memory>(await ctx.DbSetMemories.ToListAsync());
-                        StorageComponents = new ObservableCollection<Storage>(await ctx.DbSetStorages.ToListAsync());
-                        PSUs = new ObservableCollection<PSU>(await ctx.DbSetPSUs.ToListAsync());
-                        Cases = new ObservableCollection<Case>(await ctx.DbSetCases.ToListAsync());
+                        if (inStockOnly)
+                        {
+                            CPUs = new ObservableCollection<CPU>(await ctx.DbSetCPUs.Where(cpu => cpu.Stock > 0).ToListAsync());
+                            GPUs = new ObservableCollection<GPU>(await ctx.DbSetGPUs.Where(gpu => gpu.Stock > 0).ToListAsync());
+                            Motherboards = new ObservableCollection<Motherboard>(await ctx.DbSetMotherboards.Where(mb => mb.Stock > 0).ToListAsync());
+                            Rams = new ObservableCollection<Memory>(await ctx.DbSetMemories.Where(ram => ram.Stock > 0).ToListAsync());
+                            StorageComponents = new ObservableCollection<Storage>(await ctx.DbSetStorages.Where(storage => storage.Stock > 0).ToListAsync());
+                            PSUs = new ObservableCollection<PSU>(await ctx.DbSetPSUs.Where(psu => psu.Stock > 0).ToListAsync());
+                            Cases = new ObservableCollection<Case>(await ctx.DbSetCases.Where(pcCase => pcCase.Stock > 0).ToListAsync());
+                        }
+                        else
+                        {
+                            CPUs = new ObservableCollection<CPU>(await ctx.DbSetCPUs.ToListAsync());
+                            GPUs = new ObservableCollection<GPU>(await ctx.DbSetGPUs.ToListAsync());
+                            Motherboards = new ObservableCollection<Motherboard>(await ctx.DbSetMotherboards.ToListAsync());
+                            Rams = new ObservableCollection<Memory>(await ctx.DbSetMemories.ToListAsync());
+                            StorageComponents = new ObservableCollection<Storage>(await ctx.DbSetStorages.ToListAsync());
+                            PSUs = new ObservableCollection<PSU>(await ctx.DbSetPSUs.ToListAsync());
+                            Cases = new ObservableCollection<Case>(await ctx.DbSetCases.ToListAsync());
+                        }
                     }
                     break;
                 default:

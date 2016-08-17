@@ -9,11 +9,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="ProductListView">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <!-- Product list UserControl -->
+    <uc:ProductListUserControl x:Name="ProductListUserControl" />
 
-        <!-- Product list UserControl -->
-        <uc:ProductListUserControl x:Name="ProductListUserControl" />
-
-    </ScrollViewer>
-    
 </Page>

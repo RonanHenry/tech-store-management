@@ -9,11 +9,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="WorkerListView">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <!-- Worker list UserControl -->
+    <uc:WorkerListUserControl x:Name="WorkerListUserControl" />
 
-        <!-- Worker list UserControl -->
-        <uc:WorkerListUserControl x:Name="WorkerListUserControl" />
-
-    </ScrollViewer>
-    
 </Page>

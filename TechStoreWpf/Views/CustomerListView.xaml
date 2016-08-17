@@ -9,11 +9,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="CustomerListView">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <!-- Customer list UserControl -->
+    <uc:CustomerListUserControl x:Name="CustomerListUserControl" />
 
-        <!-- Customer list UserControl -->
-        <uc:CustomerListUserControl x:Name="CustomerListUserControl" />
-
-    </ScrollViewer>
-    
 </Page>
