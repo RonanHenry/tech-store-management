@@ -416,7 +416,7 @@ namespace TechStoreWpf.ViewModels
             switch (App.DataSource)
             {
                 case ConnectionResource.LOCALAPI:
-                    // API code
+                    await new WebServiceManager<Cart>().PostAsync(Cart);
                     break;
                 case ConnectionResource.LOCALMYSQL:
                     using (var ctx = new MysqlDbContext(ConnectionResource.LOCALMYSQL))
@@ -427,7 +427,6 @@ namespace TechStoreWpf.ViewModels
                             ctx.Entry(item.Product).State = EntityState.Modified;
                         }
                         ctx.DbSetCarts.Add(Cart);
-                        ctx.DbSetCartItems.AddRange(Cart.Items);
                         await ctx.SaveChangesAsync();
                     }
                     break;
@@ -437,33 +436,36 @@ namespace TechStoreWpf.ViewModels
 
             foreach (var item in Cart.Items)
             {
-                if (item.Product is CPU)
+                if (item.Product.Stock > 0)
                 {
-                    CPUs.Add((CPU)item.Product);
-                }
-                else if (item.Product is GPU)
-                {
-                    GPUs.Add((GPU)item.Product);
-                }
-                else if (item.Product is Motherboard)
-                {
-                    Motherboards.Add((Motherboard)item.Product);
-                }
-                else if (item.Product is Memory)
-                {
-                    Rams.Add((Memory)item.Product);
-                }
-                else if (item.Product is Storage)
-                {
-                    StorageComponents.Add((Storage)item.Product);
-                }
-                else if (item.Product is PSU)
-                {
-                    PSUs.Add((PSU)item.Product);
-                }
-                else // Case
-                {
-                    Cases.Add((Case)item.Product);
+                    if (item.Product is CPU)
+                    {
+                        CPUs.Add((CPU)item.Product);
+                    }
+                    else if (item.Product is GPU)
+                    {
+                        GPUs.Add((GPU)item.Product);
+                    }
+                    else if (item.Product is Motherboard)
+                    {
+                        Motherboards.Add((Motherboard)item.Product);
+                    }
+                    else if (item.Product is Memory)
+                    {
+                        Rams.Add((Memory)item.Product);
+                    }
+                    else if (item.Product is Storage)
+                    {
+                        StorageComponents.Add((Storage)item.Product);
+                    }
+                    else if (item.Product is PSU)
+                    {
+                        PSUs.Add((PSU)item.Product);
+                    }
+                    else // Case
+                    {
+                        Cases.Add((Case)item.Product);
+                    }
                 }
             }
             Cart.Items.Clear();

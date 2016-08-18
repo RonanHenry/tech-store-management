@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using TechStoreLibrary.Enums;
+using TechStoreLibrary.Models;
 using TechStoreLibrary.Utilities;
 
 namespace TechStoreLibrary.Database
@@ -77,8 +79,15 @@ namespace TechStoreLibrary.Database
         public async Task<int> PostAsync(T item)
         {
             int result = default(int);
+            bool typeNameHandling = false;
+
+            if (item.GetType() == typeof(Cart))
+            {
+                typeNameHandling = true;
+            }
+
             string url = string.Format("api/{0}", typeof(T).Name.ToLower());
-            return await HttpClientPostSenderAsync<T>(url, item, result);
+            return await HttpClientPostSenderAsync<T>(url, item, result, typeNameHandling);
         }
 
         /// <summary>
@@ -134,14 +143,35 @@ namespace TechStoreLibrary.Database
         /// <param name="item">The item to insert.</param>
         /// <param name="result">Object to hold the returned item.</param>
         /// <returns>The inserted item.</returns>
-        private async Task<int> HttpClientPostSenderAsync<TItem>(string url, TItem item, int result)
+        private async Task<int> HttpClientPostSenderAsync<TItem>(string url, TItem item, int result, bool typeNameHandling)
         {
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(BaseUrl);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json"));
+                JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings
+                {
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                };
+
+                HttpResponseMessage response = new HttpResponseMessage();
+
+                if (typeNameHandling)
+                {
+                    JsonMediaTypeFormatter jsonMediaTypeFormatter = new JsonMediaTypeFormatter();
+                    jsonMediaTypeFormatter.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
+                    jsonMediaTypeFormatter.SerializerSettings.TypeNameHandling = TypeNameHandling.All;
+                    string debug = JsonConvert.SerializeObject(item, Formatting.Indented, jsonSerializerSettings);
+
+                    response = await client.PostAsync(url, new ObjectContent<TItem>(item, jsonMediaTypeFormatter));
+                    result = HandleResponse(item, response);
+                }
+                 else
+                {
+                    response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(item, Formatting.None, jsonSerializerSettings), Encoding.UTF8, "application/json"));
+                }
+
                 result = HandleResponse(item, response);
             }
 

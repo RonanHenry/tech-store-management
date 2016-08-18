@@ -249,13 +249,20 @@ namespace TechStoreWpf.ViewModels
                     }
                     else
                     {
-                        CPUs = new ObservableCollection<CPU>(await new WebServiceManager<CPU>().GetAllAsync());
-                        GPUs = new ObservableCollection<GPU>(await new WebServiceManager<GPU>().GetAllAsync());
-                        Motherboards = new ObservableCollection<Motherboard>(await new WebServiceManager<Motherboard>().GetAllAsync());
-                        Rams = new ObservableCollection<Memory>(await new WebServiceManager<Memory>().GetAllAsync());
-                        StorageComponents = new ObservableCollection<Storage>(await new WebServiceManager<Storage>().GetAllAsync());
-                        PSUs = new ObservableCollection<PSU>(await new WebServiceManager<PSU>().GetAllAsync());
-                        Cases = new ObservableCollection<Case>(await new WebServiceManager<Case>().GetAllAsync());
+                        try
+                        {
+                            CPUs = new ObservableCollection<CPU>(await new WebServiceManager<CPU>().GetAllAsync());
+                            GPUs = new ObservableCollection<GPU>(await new WebServiceManager<GPU>().GetAllAsync());
+                            Motherboards = new ObservableCollection<Motherboard>(await new WebServiceManager<Motherboard>().GetAllAsync());
+                            Rams = new ObservableCollection<Memory>(await new WebServiceManager<Memory>().GetAllAsync());
+                            StorageComponents = new ObservableCollection<Storage>(await new WebServiceManager<Storage>().GetAllAsync());
+                            PSUs = new ObservableCollection<PSU>(await new WebServiceManager<PSU>().GetAllAsync());
+                            Cases = new ObservableCollection<Case>(await new WebServiceManager<Case>().GetAllAsync());
+                        }
+                        catch (TaskCanceledException e)
+                        {
+                            LoadProductsAsync(inStockOnly);
+                        }
                     }
                     break;
                 case ConnectionResource.LOCALMYSQL:

@@ -51,6 +51,18 @@ namespace TechStoreLibrary.Database
 
         #region Methods
         /// <summary>
+        /// Sets the expected relationship between Cart and CartItem models.
+        /// </summary>
+        /// <param name="modelBuilder">Object mapping classes to database schema.</param>
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<CartItem>().HasRequired(ct => ct.Cart)
+        //        .WithMany(c => c.Items)
+        //        .HasForeignKey(ct => ct.CartId)
+        //        .WillCascadeOnDelete(true);
+        //}
+
+        /// <summary>
         /// Generates the database and fills it with initial data.
         /// </summary>
         public async void InitDatabaseAsync()
