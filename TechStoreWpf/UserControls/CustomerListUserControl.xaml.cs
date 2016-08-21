@@ -61,7 +61,6 @@ namespace TechStoreWpf.UserControls
         {
             StatusBar.Text = "Ready";
         }
-        #endregion
 
         private void AddCustomer_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -77,5 +76,6 @@ namespace TechStoreWpf.UserControls
         {
             StatusBar.Text = "Delete selected customer";
         }
+        #endregion
     }
 }
