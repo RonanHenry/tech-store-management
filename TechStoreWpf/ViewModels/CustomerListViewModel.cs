@@ -12,6 +12,9 @@ using TechStoreLibrary.Models;
 using TechStoreWpf.Helpers;
 using TechStoreWpf.ViewModels.Base;
 using TechStoreWpf.Views;
+using System.Windows;
+using System.Threading;
+using TechStoreWpf.Views.Windows;
 
 namespace TechStoreWpf.ViewModels
 {
@@ -19,6 +22,7 @@ namespace TechStoreWpf.ViewModels
     {
         #region Attributes
         private CustomerListView customerListView;
+        private Window waitWindow;
         private ObservableCollection<Customer> customers;
         #endregion
 
@@ -35,6 +39,21 @@ namespace TechStoreWpf.ViewModels
             set
             {
                 customerListView = value;
+            }
+        }
+
+        /// <summary>
+        /// Data loading window.
+        /// </summary>
+        public Window WaitWindow
+        {
+            get
+            {
+                return waitWindow;
+            }
+            set
+            {
+                waitWindow = value;
             }
         }
 
@@ -62,10 +81,11 @@ namespace TechStoreWpf.ViewModels
         #region Constructors
         public CustomerListViewModel(CustomerListView customerListView)
         {
+            WaitWindow = new WaitWindow();
             CustomerListView = customerListView;
 
             Task.Run(() => LoadCustomersAsync());
-
+            
             AddCustomerCommand = new RelayCommand(ExecAddCustomer, CanAddCustomer);
             EditCustomerCommand = new RelayCommand(ExecEditCustomer, CanEditCustomer);
             DeleteCustomerCommand = new RelayCommand(ExecDeleteCustomerAsync, CanDeleteCustomer);
@@ -78,6 +98,21 @@ namespace TechStoreWpf.ViewModels
         /// </summary>
         public async void LoadCustomersAsync()
         {
+            #pragma warning disable CS4014
+            Application.Current.Dispatcher.BeginInvoke(new ThreadStart(() =>
+            {
+                try
+                {
+                    WaitWindow.ShowDialog();
+                }
+                catch (InvalidOperationException e)
+                {
+
+                }
+
+            }));
+            #pragma warning restore CS4014
+
             App.SetConnectionResource();
 
             switch (App.DataSource)
@@ -94,6 +129,11 @@ namespace TechStoreWpf.ViewModels
                 default:
                     break;
             }
+
+            await Application.Current.Dispatcher.BeginInvoke(new ThreadStart(() =>
+            {
+                WaitWindow.Close();
+            }));
         }
 
         private bool CanAddCustomer(object obj)

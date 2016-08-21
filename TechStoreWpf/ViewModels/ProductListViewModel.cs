@@ -12,6 +12,10 @@ using TechStoreWpf.Helpers;
 using TechStoreWpf.ViewModels.Base;
 using TechStoreWpf.Views;
 using TechStoreLibrary.Enums;
+using System.Windows;
+using TechStoreWpf.Views.Windows;
+using System.Threading;
+using System.Windows.Navigation;
 
 namespace TechStoreWpf.ViewModels
 {
@@ -19,6 +23,7 @@ namespace TechStoreWpf.ViewModels
     {
         #region Attributes
         private ProductListView productListView;
+        private Window waitWindow;
         private ObservableCollection<CPU> cpus;
         private ObservableCollection<GPU> gpus;
         private ObservableCollection<Motherboard> motherboards;
@@ -41,6 +46,21 @@ namespace TechStoreWpf.ViewModels
             set
             {
                 productListView = value;
+            }
+        }
+
+        /// <summary>
+        /// Data loading window.
+        /// </summary>
+        public Window WaitWindow
+        {
+            get
+            {
+                return waitWindow;
+            }
+            set
+            {
+                waitWindow = value;
             }
         }
 
@@ -188,9 +208,11 @@ namespace TechStoreWpf.ViewModels
         #region Constructors
         public ProductListViewModel()
         {
+            WaitWindow = new WaitWindow();
         }
 
         public ProductListViewModel(ProductListView productListView)
+            : this()
         {
             ProductListView = productListView;
 
@@ -232,6 +254,21 @@ namespace TechStoreWpf.ViewModels
         /// </summary>
         public async void LoadProductsAsync(bool inStockOnly = false)
         {
+            #pragma warning disable CS4014 
+            Application.Current.Dispatcher.BeginInvoke(new ThreadStart(() =>
+            {
+                try
+                {
+                    WaitWindow.ShowDialog();
+                }
+                catch (InvalidOperationException e)
+                {
+
+                }
+                
+            }));
+            #pragma warning restore CS4014
+
             App.SetConnectionResource();
 
             switch (App.DataSource)
@@ -293,6 +330,11 @@ namespace TechStoreWpf.ViewModels
                 default:
                     break;
             }
+
+            await Application.Current.Dispatcher.BeginInvoke(new ThreadStart(() =>
+            {
+                WaitWindow.Close();
+            }));
         }
 
         private bool CanAddProduct(object obj)

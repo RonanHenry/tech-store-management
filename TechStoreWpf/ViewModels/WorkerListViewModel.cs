@@ -14,6 +14,8 @@ using TechStoreWpf.Views;
 using TechStoreLibrary.Enums;
 using System.Windows.Controls;
 using System.Windows;
+using System.Threading;
+using TechStoreWpf.Views.Windows;
 
 namespace TechStoreWpf.ViewModels
 {
@@ -21,6 +23,7 @@ namespace TechStoreWpf.ViewModels
     {
         #region Attributes
         private WorkerListView workerListView;
+        private Window waitWindow;
         private ObservableCollection<Worker> workers;
         #endregion
 
@@ -37,6 +40,21 @@ namespace TechStoreWpf.ViewModels
             set
             {
                 workerListView = value;
+            }
+        }
+
+        /// <summary>
+        /// Data loading window.
+        /// </summary>
+        public Window WaitWindow
+        {
+            get
+            {
+                return waitWindow;
+            }
+            set
+            {
+                waitWindow = value;
             }
         }
 
@@ -64,6 +82,7 @@ namespace TechStoreWpf.ViewModels
         #region Constructors
         public WorkerListViewModel(WorkerListView workerListView)
         {
+            WaitWindow = new WaitWindow();
             WorkerListView = workerListView;
 
             Task.Run(() => LoadWorkersAsync());
@@ -80,6 +99,21 @@ namespace TechStoreWpf.ViewModels
         /// </summary>
         public async void LoadWorkersAsync()
         {
+            #pragma warning disable CS4014
+            Application.Current.Dispatcher.BeginInvoke(new ThreadStart(() =>
+            {
+                try
+                {
+                    WaitWindow.ShowDialog();
+                }
+                catch (InvalidOperationException e)
+                {
+
+                }
+
+            }));
+            #pragma warning restore CS4014
+
             App.SetConnectionResource();
 
             switch (App.DataSource)
@@ -96,6 +130,11 @@ namespace TechStoreWpf.ViewModels
                 default:
                     break;
             }
+
+            await Application.Current.Dispatcher.BeginInvoke(new ThreadStart(() =>
+            {
+                WaitWindow.Close();
+            }));
         }
 
         private bool CanAddWorker(object obj)
