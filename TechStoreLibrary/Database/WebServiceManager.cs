@@ -51,12 +51,28 @@ namespace TechStoreLibrary.Database
         public async Task<List<T>> GetAllAsync(bool onlyInStock = false)
         {
             List<T> items = new List<T>();
+
             string url = string.Format("api/{0}s", typeof(T).Name.ToLower());
 
             if (onlyInStock)
                 url = string.Format("{0}?stock=1", url);
 
-            return await HttpClientCallerAsync<List<T>>(url, items);
+           return await HttpClientCallerAsync<List<T>>(url, items);
+        }
+
+        /// <summary>
+        /// Sends a request to the web API to get all items as a JSON result.
+        /// </summary>
+        /// <param name="id">Parameter to retrieve specific values.</param>
+        /// <returns></returns>
+        public async Task<string> GetAllJsonAsync(int id = 0)
+        {
+            string url = string.Format("api/{0}s", typeof(T).Name.ToLower());
+
+            if (id != 0)
+                url = string.Format("{0}/{1}", url, id);
+
+            return await HttpClientCallerJsonAsync(url);
         }
 
         /// <summary>
@@ -136,6 +152,23 @@ namespace TechStoreLibrary.Database
         }
 
         /// <summary>
+        /// Sends a request to the Web API via an HTTP Get method.
+        /// </summary>
+        /// <param name="url">Web API url.</param>
+        /// <returns>The JSON response of the request.</returns>
+        private async Task<string> HttpClientCallerJsonAsync(string url)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync(url);
+                return await response.Content.ReadAsStringAsync();
+            }
+        }
+
+        /// <summary>
         /// Sends a request to the web API via an HTTP POST method.
         /// </summary>
         /// <typeparam name="TItem">Type of the item to insert.</typeparam>
@@ -161,11 +194,9 @@ namespace TechStoreLibrary.Database
                 {
                     JsonMediaTypeFormatter jsonMediaTypeFormatter = new JsonMediaTypeFormatter();
                     jsonMediaTypeFormatter.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
-                    jsonMediaTypeFormatter.SerializerSettings.TypeNameHandling = TypeNameHandling.All;
-                    string debug = JsonConvert.SerializeObject(item, Formatting.Indented, jsonSerializerSettings);
+                    jsonMediaTypeFormatter.SerializerSettings.TypeNameHandling = TypeNameHandling.Objects;
 
                     response = await client.PostAsync(url, new ObjectContent<TItem>(item, jsonMediaTypeFormatter));
-                    result = HandleResponse(item, response);
                 }
                  else
                 {
