@@ -81,7 +81,7 @@ namespace TechStoreLibrary.Models
             worker.LastName = Faker.Name.LastName();
             worker.Address = new Address().LoadSingleItem();
             worker.Job = workerData.Jobs[Faker.Number.RandomNumber(0, workerData.Jobs.Length)];
-            worker.Email = string.Format("{0}.{1}@tech-store.com", worker.FirstName, worker.LastName);
+            worker.Email = string.Format("{0}.{1}@tech-store.com", worker.FirstName.ToLower(), worker.LastName.ToLower());
 
             return worker;
         }
