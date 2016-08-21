@@ -1,4 +1,4 @@
-# Tech Store Management
+# Tech Store Management (DL Project)
 This project is built using the .NET Framework with Windows Presentation Foundation (WPF) as the client and an ASP.NET Web API.
 
 ## Preparation
